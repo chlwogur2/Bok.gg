@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update    # Transaction 마다 기존 테이블 삭제 후 다시 생성
+    properties:
+      hibernate:
+        format_sql: true #To beautify or pretty print the SQL
+        show_sql: true #show sql
+  profiles:
+    include: security   # DB profile 관리
+
+logging.level:
+  org.hibernate.type: trace
