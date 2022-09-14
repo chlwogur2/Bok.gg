@@ -24,7 +24,6 @@ public class SummonerV4Api {
     // Api 키는 HTTP Authorization 헤더에 삽입 "X-Riot-Token"
     private final String urlStr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 
-    @Autowired
     private final ObjectMapper objectMapper;
 
     public SummonerV4Dto summonerV4ApiBySummonerName(String summonerName) throws IOException {
@@ -46,15 +45,14 @@ public class SummonerV4Api {
 //        urlConnection.setRequestProperty("Accept-Language", "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7");
 //        urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36");
 
-        log.info("Response Code = {}", urlConnection.getResponseCode());
+        log.info("SummonerV4Api Response Code = {}", urlConnection.getResponseCode());
 
         /**
          *  여기서부터 응답값 읽어오기
          */
         // InputStreamReader 클래스로 읽어오기
         // BufferedReader 는 InputStreamReader 를 입력값으로 사용
-        BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-
+//        BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
 //        String line;
 //        StringBuilder sb = new StringBuilder();
 //        while ( (line = br.readLine()) != null ) {
