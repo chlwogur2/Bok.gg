@@ -7,11 +7,11 @@ import lombok.Data;
  */
 @Data
 // Summoner-V4, /lol/summoner/v4/summoners/by-name/{summonerName}
-public class SummonerDto {
+public class SummonerV4Dto {
 
     private String id;
 
-    private String accountID;
+    private String accountId;
 
     private String puuid;
 

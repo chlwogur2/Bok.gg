@@ -19,6 +19,7 @@ bin/
 
 ### IntelliJ IDEA ###
 src/main/resources/application-security.yml
+src/main/java/choi/bok/gg/global/RiotApiKey.java
 
 .idea
 *.iws
