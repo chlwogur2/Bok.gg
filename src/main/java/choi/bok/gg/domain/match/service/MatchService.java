@@ -1,10 +1,7 @@
 package choi.bok.gg.domain.match.service;
 
-import choi.bok.gg.domain.match.dto.MatchResponseDto;
 import choi.bok.gg.domain.match.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
