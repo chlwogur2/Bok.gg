@@ -24,7 +24,7 @@ public class User {
 
     private String userLoginId;
 
-    private String nickname;
-
     private String password;
+
+    private String summonerName;    // 아예 회원가입할때부터 각자의 롤 아이디를 적도록 하자
 }
