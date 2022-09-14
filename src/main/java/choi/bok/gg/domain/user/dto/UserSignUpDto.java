@@ -1,5 +1,6 @@
 package choi.bok.gg.domain.user.dto;
 
+import choi.bok.gg.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -18,4 +19,12 @@ public class UserSignUpDto {
     private String password;
     @NotEmpty
     private String summonerName;
+
+    public User toEntity(UserSignUpDto userSignUpDto) {
+        return User.builder()
+                .userLoginId(userSignUpDto.getUserLoginId())
+                .password(userSignUpDto.getPassword())
+                .summonerName(userSignUpDto.getSummonerName())
+                .build();
+    }
 }

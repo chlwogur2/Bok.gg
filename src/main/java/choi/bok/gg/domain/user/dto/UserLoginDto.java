@@ -2,7 +2,6 @@ package choi.bok.gg.domain.user.dto;
 
 import choi.bok.gg.domain.user.entity.User;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +21,7 @@ public class UserLoginDto {
     @NotEmpty
     private String password;
 
-    public UserLoginDto from(User user){
+    public UserLoginDto fromEntity(User user){
         return new UserLoginDto(user.getUserLoginId(), user.getPassword());
     }
 
