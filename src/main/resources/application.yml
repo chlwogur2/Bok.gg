@@ -2,7 +2,7 @@ spring:
   jpa:
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update    # Transaction 마다 기존 테이블 삭제 후 다시 생성
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true #To beautify or pretty print the SQL
