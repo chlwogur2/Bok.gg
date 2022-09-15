@@ -1,22 +1,36 @@
 package choi.bok.gg.domain.match.service.api;
 
+import choi.bok.gg.domain.match.dto.MatchV5Dto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
+@SpringBootTest
 class MatchV5ApiTest {
+
+
+    @Autowired
+    MatchV5Api matchV5Api;
 
     @Test
     void matchV5ApiByPuuid() throws IOException {
-        MatchV5Api matchV5Api = new MatchV5Api();
-        String[] results = matchV5Api.matchV5ApiByPuuid("caNygIw8Ep77rd3K3C-0c6BefzqnV25bWmy4Uu6sxZOgw8uicXtTQzU5j1SogPKM2uYaLyE3yUwXAA", 0, 20);
 
-        // stream -> forEach 문
-        // String[] 배열이 아니고 그냥 String 이 넘어오네 뭐지
-        Arrays.stream(results).forEach(s -> System.out.println(s));
+        // 내 아이디의 puuid
+        List<String> results = matchV5Api.matchIdsByPuuid("caNygIw8Ep77rd3K3C-0c6BefzqnV25bWmy4Uu6sxZOgw8uicXtTQzU5j1SogPKM2uYaLyE3yUwXAA", 0, 20);
+
+        System.out.println("매치 id들= " + results);
+    }
+
+    @Test
+    void matchByMatchId() throws IOException{
+        List<String> results = matchV5Api.matchIdsByPuuid("caNygIw8Ep77rd3K3C-0c6BefzqnV25bWmy4Uu6sxZOgw8uicXtTQzU5j1SogPKM2uYaLyE3yUwXAA", 0, 20);
+
+        MatchV5Dto matchV5Dto = matchV5Api.matchByMatchId(results.get(2));
+
+        System.out.println("MatchDto 내용= " + matchV5Dto);
     }
 }

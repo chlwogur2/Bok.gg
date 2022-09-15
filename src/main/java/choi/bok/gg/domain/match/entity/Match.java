@@ -12,12 +12,10 @@ public class Match {
     @Column(name = "match_id")
     private Long id;
 
-
     // 내 사이트에 가입된 유저만 매치 히스토리 확인 가능
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 
 }
 
