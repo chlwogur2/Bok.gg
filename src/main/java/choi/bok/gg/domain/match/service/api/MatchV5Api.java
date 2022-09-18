@@ -43,7 +43,7 @@ public class MatchV5Api {
 
         matchIds = objectMapper.readValue(urlConnection.getInputStream(), List.class);
 
-        log.info("matchV5Api results = {}", matchIds);
+//        log.info("matchV5Api results = {}", matchIds);
 
         return matchIds;
     }

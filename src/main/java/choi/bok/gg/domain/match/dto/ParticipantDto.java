@@ -1,13 +1,32 @@
 package choi.bok.gg.domain.match.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.Data;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * 공공 API 에서 받은 JSON 응답의 필드가 엄청 많을 때, 이것들을 전부 Object 매핑 해줘야 하나
  */
+
+@Data   // 이걸 붙여줘야 인식을 한다
+@JsonIgnoreProperties("perks")
 public class ParticipantDto {
 
     private int assists;
     private int baronKills;
     private int bountyLevel;
+    private int basicPings; // 이건 왜넘어와 api spec 에도 없는데
+
+    // challenges 에서 가져온 애들
+    private int kda; // 얘도
+    private int deathsByEnemyChamps;
+    // 여기까지
+
     private int champExperience;
     private int champLevel;
     private int championId;
@@ -15,12 +34,14 @@ public class ParticipantDto {
     private String championName;
     private int consumablesPurchased;
     private int damageDealtToObjectives;
+    private int damageDealtToBuildings;
     private int damageDealtToTurrets;
     private int damageSelfMitigated;
     private int deaths;
     private int detectorWardsPlaced;
     private int doubleKills;
     private int dragonKills;
+    private boolean eligibleForProgression;
     private boolean firstBloodAssist;
     private boolean firstBloodKill;
     private boolean firstTowerAssist;
@@ -59,7 +80,10 @@ public class ParticipantDto {
     private int objectivesStolenAssists;
     private int participantId;
     private int pentaKills;
-    private PerksDto perks;
+
+
+//    private PerksDto perks;
+
     private int physicalDamageDealt;
     private int physicalDamageDealtToChampions;
     private int physicalDamageTaken;
@@ -109,5 +133,12 @@ public class ParticipantDto {
     private int wardsKilled;
     private int wardsPlaced;
     private boolean win;
+
+    @SuppressWarnings("unchecked")
+    @JsonProperty("challenges")
+    private void unpackChallenges(Map<String, Integer> challenges){
+        this.kda = challenges.get("kda");
+        this.deathsByEnemyChamps = challenges.get("deathsByEnemyChamps");
+    }
 
 }
