@@ -8,5 +8,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/summoners")
 public class SummonerController {
-
 }

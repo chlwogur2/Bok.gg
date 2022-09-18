@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Controller
 public class HomeController {
 
-
     @GetMapping("/")
     public String homePage(
             @SessionAttribute(name = SessionConst.LOGIN_SESSION, required = false) UserLoginDto userLoginDto, Model model){
