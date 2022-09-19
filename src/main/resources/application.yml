@@ -9,6 +9,8 @@ spring:
         show_sql: true #show sql
   profiles:
     include: security   # DB profile 관리
+  messages:
+    basename: messages
 
 logging.level:
   org.hibernate.type: trace
