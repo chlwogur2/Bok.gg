@@ -6,6 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.MessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 import java.io.IOException;
 
@@ -15,10 +17,12 @@ class SummonerV4ApiTest {
 
     @Autowired
     ObjectMapper objectMapper;
+    @Autowired
+    MessageSource messageSource;
 
     @Test
     void summonerV4ApiBySummonerName() throws IOException {
-        SummonerV4Api summonerV4Api = new SummonerV4Api(objectMapper);
+        SummonerV4Api summonerV4Api = new SummonerV4Api(messageSource,objectMapper);
         SummonerV4Dto result = summonerV4Api.summonerV4ApiBySummonerName("재 렉");
         Assertions.assertThat(result.getName()).isEqualTo("재 렉");
     }
