@@ -5,7 +5,7 @@ import choi.bok.gg.global.RiotApiKey;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,12 +15,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class SummonerV4Api {
 
+    private final MessageSource messageSource;
     // Api 키는 HTTP Authorization 헤더에 삽입 "X-Riot-Token"
     private final String urlStr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 
@@ -30,8 +32,9 @@ public class SummonerV4Api {
 
         // 한글이 깨지는 문제로 인해 소환사 이름을 인코딩을 해야함
         String encoded = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
+        String urlStr2 = messageSource.getMessage("summoner.puuid.by-summoner-name", new Object[]{encoded}, Locale.ENGLISH);
         // URL 객체 생성 (절대경로)
-        URL url = new URL(urlStr + encoded);
+        URL url = new URL(urlStr2);
 
         // OpenConnection() 메소드로 연결
         // url 주소의 원격 객체에 접속한 뒤 --> 통신할 수 있는 URLconnection 객체 리턴
