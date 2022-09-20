@@ -1,5 +1,6 @@
 package choi.bok.gg.domain.likes.entity;
 
+import choi.bok.gg.domain.comment.entity.Comment;
 import choi.bok.gg.domain.match.entity.Match;
 import choi.bok.gg.domain.user.entity.User;
 
@@ -20,5 +21,9 @@ public class Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "match_id")
     private Match match;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comment_id")
+    private Comment comment;
 
 }
