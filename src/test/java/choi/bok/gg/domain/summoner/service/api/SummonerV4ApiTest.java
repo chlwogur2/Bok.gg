@@ -26,4 +26,10 @@ class SummonerV4ApiTest {
         SummonerV4Dto result = summonerV4Api.summonerV4ApiBySummonerName("재 렉");
         Assertions.assertThat(result.getName()).isEqualTo("재 렉");
     }
+
+    @Test
+    void 없는소환사이름() throws IOException{
+        SummonerV4Api summonerV4Api = new SummonerV4Api(messageSource,objectMapper);
+        Assertions.assertThat(summonerV4Api.summonerV4ApiBySummonerName("dkanrjskdlqfur")).isNull();
+    }
 }
