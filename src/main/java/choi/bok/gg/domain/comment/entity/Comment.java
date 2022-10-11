@@ -18,7 +18,6 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // 매치를 DB에 저장을 해야하나
     @ManyToOne
     @JoinColumn(name = "match_id")
     private Match match;
