@@ -1,5 +1,6 @@
 package choi.bok.gg.domain.summoner.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -7,7 +8,7 @@ import lombok.Data;
  */
 @Data
 // Summoner-V4, /lol/summoner/v4/summoners/by-name/{summonerName}
-public class SummonerV4Dto {
+public class SummonerDto {
 
     private String id;
 
