@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,25 +13,19 @@ import java.util.Map;
  */
 
 @Data   // 이걸 붙여줘야 인식을 한다
-@JsonIgnoreProperties("perks")
 public class ParticipantDto {
 
     private int assists;
-    private int baronKills;
-    private int bountyLevel;
-    private int basicPings; // 이건 왜넘어와 api spec 에도 없는데
-
     // challenges 에서 가져온 애들
     private int kda; // 얘도
     private int deathsByEnemyChamps;
     // 여기까지
 
-    private int champExperience;
     private int champLevel;
     private int championId;
     private int championTransform;
     private String championName;
-    private int consumablesPurchased;
+    private int consumablesPurchased;   // 영약 산 횟수
     private int damageDealtToObjectives;
     private int damageDealtToBuildings;
     private int damageDealtToTurrets;
@@ -40,20 +33,12 @@ public class ParticipantDto {
     private int deaths;
     private int detectorWardsPlaced;
     private int doubleKills;
-    private int dragonKills;
     private boolean eligibleForProgression;
-    private boolean firstBloodAssist;
-    private boolean firstBloodKill;
-    private boolean firstTowerAssist;
-    private boolean firstTowerKill;
-    private boolean gameEndedInEarlySurrender;
-    private boolean gameEndedInSurrender;
+    private boolean gameEndedInEarlySurrender;  // 조기 서렌
+    private boolean gameEndedInSurrender;   // 서렌
     private int goldEarned;
     private int goldSpent;
-    private String individualPosition;
-    private int inhibitorKills;
-    private int inhibitorTakedowns;
-    private int inhibitorsLost;
+    private String individualPosition;  // 포지션? 뭐임 이거
     private int item0;
     private int item1;
     private int item2;
@@ -61,38 +46,33 @@ public class ParticipantDto {
     private int item4;
     private int item5;
     private int item6;
-    private int itemsPurchased;
     private int killingSprees;
     private int kills;
-    private String lane;
-    private int largestCriticalStrike;
+    private String lane;    // 챔피언 라인?
     private int largestKillingSpree;
-    private int largestMultiKill;
     private int longestTimeSpentLiving;
+
     private int magicDamageDealt;
     private int magicDamageDealtToChampions;
     private int magicDamageTaken;
+
     private int neutralMinionsKilled;
-    private int nexusKills;
-    private int nexusTakedowns;
-    private int nexusLost;
     private int objectivesStolen;
     private int objectivesStolenAssists;
     private int participantId;
+
     private int pentaKills;
-
-
-//    private PerksDto perks;
 
     private int physicalDamageDealt;
     private int physicalDamageDealtToChampions;
     private int physicalDamageTaken;
+
     private int profileIcon;
+
     private int quadraKills;
+
     private String puuid;
-    private String riotIdName;
-    private String riotIdTagline;
-    private String role;
+
     private int sightWardsBoughtInGame;
     private int spell1Casts;
     private int spell2Casts;
@@ -106,28 +86,30 @@ public class ParticipantDto {
     private String summonerName;
     private String teamPosition;
     private int summonerLevel;
+
     private boolean teamEarlySurrendered;
     private int teamId;
-    private int timeCCingOthers;
+
+
     private int timePlayed;
+
     private int totalDamageDealt;
     private int totalDamageDealtToChampions;
     private int totalDamageShieldedOnTeammates;
     private int totalDamageTaken;
+
     private int totalHeal;
     private int totalHealsOnTeammates;
+
     private int totalMinionsKilled;
-    private int totalTimeCCDealt;
+
     private int totalTimeSpentDead;
-    private int totalUnitsHealed;
+
     private int tripleKills;
-    private int trueDamageDealt;
-    private int trueDamageDealtToChampions;
-    private int trueDamageTaken;
+
     private int turretKills;
-    private int turretTakedowns;
-    private int turretsLost;
-    private int unrealKills;
+
+
     private int visionScore;
     private int visionWardsBoughtInGame;
     private int wardsKilled;
@@ -140,5 +122,4 @@ public class ParticipantDto {
         this.kda = challenges.get("kda");
         this.deathsByEnemyChamps = challenges.get("deathsByEnemyChamps");
     }
-
 }

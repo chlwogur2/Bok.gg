@@ -14,20 +14,12 @@ public class MatchInfoDto {
     private long gameEndTimestamp;
     private long gameId;
     private String gameMode;
-    private String gameName;
     private long gameStartTimestamp;
     private String gameType;
     private String gameVersion;
     private int mapId;
     private List<ParticipantDto> participants;  // 얘가 제일 긺
     private String platformId;  // KR
-    private int queueId;    // 420?
     private List<TeamDto> teams;    // 챔피언 뭐 픽했고, 뭐 벤했는지, 이겼는지 졌는데, 오브젝트
-    private String tournamentCode;
 
-//    @JsonProperty("participants")
-//    @SuppressWarnings("unchecked")
-//    private void unpackNested(Map<String, Object> participants){
-//
-//    }
 }
