@@ -27,7 +27,6 @@ public class LoginController {
     // 로그인 폼 보여주는 애
     @GetMapping("/login")
     public String loginForm(@ModelAttribute UserLoginDto userLoginDto){
-
         // TODO: 2022-09-12 [view 만들어야함]
         return "login/loginForm";
     }
@@ -56,7 +55,6 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_SESSION, userLoginDto); // 넘어온 userLoginDto 세션에 저장
 
         return "redirect:" + redirectURL;
-
 
     }
 }
