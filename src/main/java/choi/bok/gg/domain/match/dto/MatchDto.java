@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class MatchV5Dto {
+public class MatchDto {
 
     // json key 이름으로 필드명 변경
     @JsonProperty("metadata")
