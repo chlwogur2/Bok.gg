@@ -1,7 +1,7 @@
 package choi.bok.gg.domain.match.service.api;
 
 
-import choi.bok.gg.domain.match.dto.MatchV5Dto;
+import choi.bok.gg.domain.match.dto.MatchDto;
 import choi.bok.gg.global.RiotApiKey;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +22,7 @@ public class MatchV5Api {
 
     private final String urlStr = "https://asia.api.riotgames.com/lol/match/v5/matches/";
     private final ObjectMapper objectMapper;
+//    private final ApiService apiService;
 
     /**
      * @param puuid 유저의 puuid
@@ -48,7 +49,7 @@ public class MatchV5Api {
         return matchIds;
     }
 
-    public MatchV5Dto matchByMatchId(String matchId) throws IOException{
+    public MatchDto matchByMatchId(String matchId) throws IOException{
 
         URL url = new URL(urlStr + matchId);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -56,6 +57,6 @@ public class MatchV5Api {
         urlConnection.setRequestProperty("X-Riot-Token", RiotApiKey.KEY);
 
         // JSON Array 매핑하는 걸로 바꿔야 함
-        return objectMapper.readValue(urlConnection.getInputStream(), MatchV5Dto.class);
+        return objectMapper.readValue(urlConnection.getInputStream(), MatchDto.class);
     }
 }
