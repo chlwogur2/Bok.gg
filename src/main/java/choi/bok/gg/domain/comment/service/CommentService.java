@@ -21,8 +21,8 @@ public class CommentService {
 
     public void writeComment(CommentWriteDto commentWriteDto) {
         commentRepository.save(Comment.builder()
-                .user(userRepository.findById(commentWriteDto.getUserId()).get())
-                .match(matchRepository.findById(commentWriteDto.getMatchId()).get())
+                .user(userRepository.findUserBySummonerName(commentWriteDto.getSummonerName()).get())
+                .match(matchRepository.findMatchByMatchId(commentWriteDto.getMatchId()).get())
                 .content(commentWriteDto.getContent())
                 .depth(commentWriteDto.getDepth()).build());
     }
@@ -32,8 +32,6 @@ public class CommentService {
     }
 
     public void deleteComment(CommentDeleteDto commentDeleteDto) {
-        commentRepository.delete(commentRepository.findByUserAndMatch(
-                userRepository.findById(commentDeleteDto.getUserId()).get(), matchRepository.findById(commentDeleteDto.getMatchId()).get()
-        ));
+        commentRepository.delete(commentRepository.findById(commentDeleteDto.getCommentId()).get());
     }
 }

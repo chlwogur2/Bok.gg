@@ -4,6 +4,7 @@ import choi.bok.gg.domain.match.entity.Match;
 import choi.bok.gg.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 // id 높은 것부터 내림차순 정렬
 public class Comment {
 

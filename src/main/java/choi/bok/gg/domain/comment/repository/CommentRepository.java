@@ -14,5 +14,4 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("select c from Comment c where c.user = :user ")
     List<Comment> findCommentsByUser(@Param("user") User user);
 
-    Comment findByUserAndMatch(User user, Match match);
 }

@@ -5,6 +5,5 @@ import lombok.Data;
 @Data
 public class CommentDeleteDto {
 
-    private Long userId;
-    private Long matchId;
+    private Long commentId;
 }
