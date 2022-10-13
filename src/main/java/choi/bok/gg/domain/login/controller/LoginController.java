@@ -46,6 +46,7 @@ public class LoginController {
 
         // 로그인 실패 시, reject 전달
         if (loginUser == null){
+            log.info("로그인 실패");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "login/loginForm";
         }
@@ -53,7 +54,7 @@ public class LoginController {
         // 로그인 성공 처리 (없으면 새로 세션을 생성해줌)
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_SESSION, userLoginDto); // 넘어온 userLoginDto 세션에 저장
-
+        log.info("로그인 성공");
         return "redirect:" + redirectURL;
 
     }
