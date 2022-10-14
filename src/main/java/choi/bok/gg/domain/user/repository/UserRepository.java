@@ -9,4 +9,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // 메소드 이름으로 쿼리 생성
     Optional<User> findUserByUserLoginId(String userLoginId);
+
+    Optional<User> findUserBySummonerName(String summonerName);
 }

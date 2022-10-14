@@ -26,5 +26,9 @@ public class User {
 
     private String password;
 
+    @Column(name = "summoner_name")
     private String summonerName;    // 아예 회원가입할때부터 각자의 롤 아이디를 적도록 하자
+
+    @Column(name = "account_id")
+    private String accountId;   // 회원가입부터 Riot accountId 저장
 }
