@@ -19,10 +19,13 @@ public class UserLoginDto {
     private String userLoginId;
 
     @NotEmpty
+    private String summonerName;
+
+    @NotEmpty
     private String password;
 
-    public UserLoginDto fromEntity(User user){
-        return new UserLoginDto(user.getUserLoginId(), user.getPassword());
+    public UserLoginDto from(User user){
+        return new UserLoginDto(user.getUserLoginId(), user.getSummonerName() ,user.getPassword());
     }
 
 }
