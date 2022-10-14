@@ -43,7 +43,10 @@ class CommentServiceTest {
         CommentWriteDto commentWriteDto = new CommentWriteDto("wqw","wqw","hello",0);
         commentService.writeComment(commentWriteDto);
 
-        Assertions.assertThat(commentRepository.findCommentsByUser(userRepository.findUserBySummonerName("wqw").get()).get(0).getContent()).isEqualTo("hello");
+        Assertions.assertThat(
+                commentRepository.findCommentsByUser(
+                        userRepository.findUserBySummonerName("wqw").get()).get(0).getContent())
+                .isEqualTo("hello");
     }
 
     @Test
