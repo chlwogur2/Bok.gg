@@ -26,12 +26,31 @@ public class SummonerV4Api {
     // Api 키는 HTTP Authorization 헤더에 삽입 "X-Riot-Token"
 
     private final ObjectMapper objectMapper;
+    
+
+    public SummonerDto summonerDtoByAccountId(String accountId) throws IOException{
+        String urlStr = messageSource.getMessage("summoner.by-accountid", new Object[]{accountId}, null);
+        HttpURLConnection urlConnection = apiService.makeConnection(urlStr);
+        if (urlConnection.getResponseCode() == 404) {
+            return null;
+        }
+
+        SummonerDto summonerDto = objectMapper.readValue(urlConnection.getInputStream(), SummonerDto.class);
+
+        urlConnection.disconnect();
+        log.info("받아온 정보 = {}", summonerDto);
+        return summonerDto;
+
+    }
 
     public SummonerDto summonerDtoBySummonerName(String summonerName) throws IOException {
 
         // 한글이 깨지는 문제로 인해 소환사 이름을 인코딩을 해야함
+        log.info("인코딩 전 소환사 이름: {}", summonerName);
         String encoded = URLEncoder.encode(summonerName, StandardCharsets.UTF_8);
+        log.info("인코딩된 소환사 이름: {}", encoded);
         String urlStr = messageSource.getMessage("summoner.puuid.by-summoner-name", new Object[]{encoded}, null);
+        log.info("요청 url: {}", urlStr);
         HttpURLConnection urlConnection = apiService.makeConnection(urlStr);
 
         log.info("SummonerV4Api Response Code = {}", urlConnection.getResponseCode());
