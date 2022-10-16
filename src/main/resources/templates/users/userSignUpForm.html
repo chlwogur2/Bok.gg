@@ -8,6 +8,7 @@
             color: blueviolet;
         }
     </style>
+
 </head>
 <body>
     <h2>회원가입</h2>
@@ -15,7 +16,10 @@
         <div>
             <label for="userLoginId">로그인 ID</label>
             <input type="text" id="userLoginId" th:field="*{userLoginId}" th:errorclass="field-error">
-            <button >중복 검사</button>
+            <button id="duplicate-check" type="button">중복 검사</button>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" id="duplicatedResult" th:each="err : ${#fields.globalErrors()}" th:text="${err}">아이디 사용 가능 여부</p>
+            </div>
             <div class="field-error"th:errors="*{userLoginId}"></div>
         </div>
         <div>
@@ -30,6 +34,7 @@
         <div>
             <label for="summonerName">소환사 이름</label>
             <input type="text" id="summonerName" th:field="*{summonerName}" th:errorclass="field-error">
+            <span>띄어쓰기까지 입력해 주세요.</span>
             <div class="field-error" th:errors="*{summonerName}"/>
             <div th:if="${#fields.hasGlobalErrors()}">
                 <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">존재하지 않는 소환사</p>
@@ -38,5 +43,28 @@
         <button type="submit">회원가입</button>
         <button type="button" th:onclick="|location.href='@{/}'|">취소</button>
     </form>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+
+        $("#duplicate-check").on("click", function(){
+            console.log("중복검사 실행");
+            let loginId = JSON.stringify({
+                loginId : $("#userLoginId").val()
+            });
+            console.log(loginId);
+
+            $.ajax({
+                url: "/users/signup",
+                type: "POST",
+                contentType: "application/json",
+                data: loginId,
+
+            })
+                .done(function (fragment){
+                    $("#duplicatedResult").replaceWith(fragment);
+                });
+        });
+    </script>
+
 </body>
 </html>
