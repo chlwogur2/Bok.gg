@@ -1,12 +1,15 @@
 package choi.bok.gg.domain.user.controller;
 
 import choi.bok.gg.domain.summoner.service.SummonerService;
+import choi.bok.gg.domain.user.dto.UserLoginDto;
 import choi.bok.gg.domain.user.dto.UserLoginIdDto;
 import choi.bok.gg.domain.user.dto.UserSignUpDto;
 import choi.bok.gg.domain.user.service.UserService;
+import choi.bok.gg.global.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,14 +60,13 @@ public class UserController {
             return "users/userSignUpForm";
         }
 
-
-
         userService.signUp(userSignUpDto);
         return "redirect:/";
     }
 
     @GetMapping("/mypage")
-    public String myPage() {
+    public String myPage(@SessionAttribute(name = SessionConst.LOGIN_SESSION) UserLoginDto userLoginDto, Model model) {
+        model.addAttribute("userLoginDto", userLoginDto);
         return "users/myPage";
     }
 }
