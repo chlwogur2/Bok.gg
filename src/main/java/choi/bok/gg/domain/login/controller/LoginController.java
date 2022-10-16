@@ -36,8 +36,11 @@ public class LoginController {
                         @RequestParam(defaultValue = "/") String redirectURL,
                         HttpServletRequest request){
 
+        log.info("로그인 컨트롤러 진입");
+
         // 사용자의 입력이 애초에 틀렸을 때
         if (bindingResult.hasErrors()){
+            log.info("사용자 입력 틀림 {}", bindingResult.getFieldErrors());
             return "login/loginForm";
         }
 
