@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class SummonerV4Api {
+public class SummonerApi {
 
     private final ApiService apiService;
     private final MessageSource messageSource;

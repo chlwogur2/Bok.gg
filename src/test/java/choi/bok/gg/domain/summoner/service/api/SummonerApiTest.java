@@ -15,7 +15,7 @@ import java.util.List;
 
 // 이거 빼면 objectMapper 가 지금 빈으로 등록되어 있어서 NPE 뜸
 @SpringBootTest
-class SummonerV4ApiTest {
+class SummonerApiTest {
 
     @Autowired
     ObjectMapper objectMapper;
@@ -24,23 +24,23 @@ class SummonerV4ApiTest {
     @Autowired
     ApiService apiService;
     @Autowired
-    SummonerV4Api summonerV4Api = new SummonerV4Api(apiService, messageSource, objectMapper);
+    SummonerApi summonerApi = new SummonerApi(apiService, messageSource, objectMapper);
 
     @Test
     void summonerV4DtoDySummonerName() throws IOException {
-        SummonerDto summonerDto = summonerV4Api.summonerDtoBySummonerName("재 렉");
+        SummonerDto summonerDto = summonerApi.summonerDtoBySummonerName("재 렉");
         Assertions.assertThat(summonerDto.getName()).isEqualTo("재 렉");
     }
 
     @Test
     void 없는소환사이름() throws IOException{
-        Assertions.assertThat(summonerV4Api.summonerDtoBySummonerName("dkanrjskdlqfur")).isNull();
+        Assertions.assertThat(summonerApi.summonerDtoBySummonerName("dkanrjskdlqfur")).isNull();
     }
 
     @Test
     void 그님티() throws IOException{
-        SummonerDto summonerDto = summonerV4Api.summonerDtoBySummonerName("재 렉");
-        List<SummonerTierDto> summonerTierDtos = summonerV4Api.summonerTierByPuuid(summonerDto.getId());
+        SummonerDto summonerDto = summonerApi.summonerDtoBySummonerName("재 렉");
+        List<SummonerTierDto> summonerTierDtos = summonerApi.summonerTierByPuuid(summonerDto.getId());
         Assertions.assertThat(summonerTierDtos.get(1).getTier()).isEqualTo("SILVER");
     }
 }
