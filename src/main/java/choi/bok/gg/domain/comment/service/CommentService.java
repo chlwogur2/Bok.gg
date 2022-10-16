@@ -42,7 +42,7 @@ public class CommentService {
     }
 
     public Page<CommentPageDto> findRecentFiveComments(UserLoginDto userLoginDto){
-        Optional<User> user = userRepository.findUserBySummonerName(userLoginDto.getSummonerName());
+        Optional<User> user = userRepository.findUserByUserLoginId(userLoginDto.getUserLoginId());
         PageRequest pageRequest = PageRequest.of(0, 5, Sort.by(Sort.Order.desc("id")));
         return commentRepository.findCommentsPaging(user.get(), pageRequest).map(CommentPageDto::from);
     }
