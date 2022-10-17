@@ -23,7 +23,6 @@ class UserRepositoryTest {
     void findUserByUserLoginId() {
 
         String userLoginId = "hello";
-        // userLoginId 로만 객체를 생성하기 위해 빌더패턴 사용
         User user = User.builder()
                 .userLoginId(userLoginId)
                 .build();
