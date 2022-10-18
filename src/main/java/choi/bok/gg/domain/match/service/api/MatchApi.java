@@ -3,9 +3,11 @@ package choi.bok.gg.domain.match.service.api;
 
 import choi.bok.gg.domain.match.dto.MatchDto;
 import choi.bok.gg.global.RiotApiKey;
+import choi.bok.gg.global.api.ApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 
@@ -18,26 +20,21 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class MatchV5Api {
+public class MatchApi {
 
     private final String urlStr = "https://asia.api.riotgames.com/lol/match/v5/matches/";
     private final ObjectMapper objectMapper;
-//    private final ApiService apiService;
+    private final ApiService apiService;
+    private final MessageSource messageSource;
 
     /**
      * @param puuid 유저의 puuid
-     * @param start Defaults to 0. Start index
-     * @param end   Defaults to 20. Valid values: 0 to 100.
      * @throws IOException
      */
-    // TODO String[] 로 넘어오는게 아니고, [...] 로 둘러싸인 String 요소 하나로 취급됨 -> 리턴 타입 변경
     public List<String> matchIdsByPuuid(String puuid, int start, int end) throws IOException {
-        // 좀 더 손보자
-        URL url = new URL(urlStr + "by-puuid/" + puuid + "/ids?start=" + start + "&count=" + end);
 
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-        urlConnection.setRequestProperty("X-Riot-Token", RiotApiKey.KEY);
+        String urlStr = messageSource.getMessage("match.id.by-puuid", new Object[]{puuid, start, end}, null);
+        HttpURLConnection urlConnection = apiService.makeConnection(urlStr);
 
         // UTF-8 인코딩 필요없음
         List<String> matchIds;
