@@ -1,6 +1,5 @@
 package choi.bok.gg.domain.summoner.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
