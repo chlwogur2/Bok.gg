@@ -1,6 +1,5 @@
 # Bok.gg
 
-***
 
 ***League of Legends (이하 LOL) 전적 검색 +  댓글 서비스입니다.***
 
