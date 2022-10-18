@@ -3,27 +3,26 @@ package choi.bok.gg.domain.match.service;
 import choi.bok.gg.domain.match.dto.MatchDto;
 import choi.bok.gg.domain.match.entity.Match;
 import choi.bok.gg.domain.match.repository.MatchRepository;
-import choi.bok.gg.domain.match.service.api.MatchV5Api;
+import choi.bok.gg.domain.match.service.api.MatchApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MatchService {
-    private final MatchV5Api matchV5Api;
+    private final MatchApi matchApi;
     private final MatchRepository matchRepository;
 
-    public List<String> getMatchIds(String puuid) throws IOException {
-        return matchV5Api.matchIdsByPuuid(puuid, 0, 10);
+    public List<String> getMatchIdsByPuuid(String puuid) throws IOException {
+        return matchApi.matchIdsByPuuid(puuid, 0, 10);
     }
 
-    public MatchDto getMatch(String matchId) throws IOException {
-        return matchV5Api.matchByMatchId(matchId);
+    public MatchDto getMatchByMatchId(String matchId) throws IOException {
+        return matchApi.matchByMatchId(matchId);
     }
 
     public void saveMatch(MatchDto matchDto) {

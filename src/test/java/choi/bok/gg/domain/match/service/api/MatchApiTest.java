@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootTest
-class MatchV5ApiTest {
+class MatchApiTest {
 
     @Autowired MatchService matchService;
     @Autowired SummonerService summonerService;
@@ -19,9 +19,9 @@ class MatchV5ApiTest {
     @Test
     void matchV5ApiByPuuid() throws IOException {
 
-        String puuid = summonerService.getPuuid("재 렉");
+        String puuid = summonerService.getPuuidBySummonerName("재 렉");
 
-        List<String> matchIds = matchService.getMatchIds(puuid);
+        List<String> matchIds = matchService.getMatchIdsByPuuid(puuid);
 
         for(String s : matchIds) System.out.println(s);
 
@@ -29,9 +29,9 @@ class MatchV5ApiTest {
 
     @Test
     void matchByMatchId() throws IOException{
-        String puuid = summonerService.getPuuid("재 렉");
-        List<String> matchIds = matchService.getMatchIds(puuid);
-        MatchDto result = matchService.getMatch(matchIds.get(0));
+        String puuid = summonerService.getPuuidBySummonerName("재 렉");
+        List<String> matchIds = matchService.getMatchIdsByPuuid(puuid);
+        MatchDto result = matchService.getMatchByMatchId(matchIds.get(0));
         System.out.println(result);
     }
 }
