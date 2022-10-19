@@ -1,16 +1,14 @@
 package choi.bok.gg.global.api;
 
 import choi.bok.gg.global.RiotApiKey;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-@Service
-public class ApiService {
+public interface ApiService {
 
-    public HttpURLConnection makeConnection(String urlStr) throws IOException {
+    default HttpURLConnection makeConnection(String urlStr) throws IOException {
         // URL 객체 생성 (절대경로)
         URL url = new URL(urlStr);
 
