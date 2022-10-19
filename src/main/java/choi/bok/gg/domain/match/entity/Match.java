@@ -23,7 +23,7 @@ public class Match {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "matchApi_id")
+    @Column(name = "match_api_id")
     private String matchId;
 
     // 이거를 기준으로 DB에서 정렬
