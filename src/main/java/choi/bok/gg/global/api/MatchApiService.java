@@ -29,7 +29,7 @@ public class MatchApiService implements ApiService{
         return matchIds;
     }
 
-    public MatchDto matchByMatchId(String urlStr) throws IOException {
+    public MatchDto getMatchDto(String urlStr) throws IOException {
         log.info("요청 url: {}", urlStr);
         HttpURLConnection urlConnection = makeConnection(urlStr);
         log.info("MatchInfoApi Response Code = {}", urlConnection.getResponseCode());

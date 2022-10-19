@@ -19,7 +19,7 @@ class MatchApiTest {
     @Test
     void matchV5ApiByPuuid() throws IOException {
 
-        String puuid = summonerService.getPuuidBySummonerName("재 렉");
+        String puuid = summonerService.getPuuidBySummonerName("재 렉", "summonerKrApi");
 
         List<String> matchIds = matchService.getMatchIdsByPuuid(puuid);
 
@@ -29,7 +29,7 @@ class MatchApiTest {
 
     @Test
     void matchByMatchId() throws IOException{
-        String puuid = summonerService.getPuuidBySummonerName("재 렉");
+        String puuid = summonerService.getPuuidBySummonerName("재 렉", "summonerKrApi");
         List<String> matchIds = matchService.getMatchIdsByPuuid(puuid);
         MatchDto result = matchService.getMatchByMatchId(matchIds.get(0));
         System.out.println(result);

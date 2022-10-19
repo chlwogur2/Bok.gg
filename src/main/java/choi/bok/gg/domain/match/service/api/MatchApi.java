@@ -3,8 +3,6 @@ package choi.bok.gg.domain.match.service.api;
 
 import choi.bok.gg.domain.match.dto.MatchDto;
 import choi.bok.gg.global.api.MatchApiService;
-import choi.bok.gg.global.api.SummonerApiService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import java.net.HttpURLConnection;
 import java.util.List;
 
 @Slf4j
@@ -38,6 +35,6 @@ public class MatchApi {
     public MatchDto matchByMatchId(String matchId) throws IOException{
 
         String urlStr = messageSource.getMessage("match.info.by-match-id", new Object[]{matchId}, null);
-        return matchApiService.matchByMatchId(urlStr);
+        return matchApiService.getMatchDto(urlStr);
     }
 }
