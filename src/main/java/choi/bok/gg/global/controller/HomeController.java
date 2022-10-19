@@ -37,10 +37,10 @@ public class HomeController {
 
         // 세션의 회원 데이터에서 userLoginId -> 소환사 이름
         String accountId = userService.findAccountId(userLoginDto.getUserLoginId());
-        List<String> matchIds = matchService.getMatchIds(summonerService.getPuuid(accountId));
+        List<String> matchIds = matchService.getMatchIdsByPuuid(summonerService.getPuuidByAccountId(accountId, "summonerKrApi"));
         List<MatchDto> matches = new ArrayList<>();
         // TODO 최근 기록이 10개 이하인 경우?
-        for (String m : matchIds) matches.add(matchService.getMatch(m));
+        for (String m : matchIds) matches.add(matchService.getMatchByMatchId(m));
 
         // 로그인한 회원이면 로그인 home 화면
         model.addAttribute("userLoginDto", userLoginDto);
