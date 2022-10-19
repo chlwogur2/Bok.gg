@@ -2,8 +2,8 @@ package choi.bok.gg.domain.match.service.api;
 
 
 import choi.bok.gg.domain.match.dto.MatchDto;
-import choi.bok.gg.global.RiotApiKey;
-import choi.bok.gg.global.api.ApiService;
+import choi.bok.gg.global.api.MatchApiService;
+import choi.bok.gg.global.api.SummonerApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +22,7 @@ import java.util.List;
 public class MatchApi {
 
 
-    private final ObjectMapper objectMapper;
-    private final ApiService apiService;
+    private final MatchApiService matchApiService;
     private final MessageSource messageSource;
 
     /**
@@ -33,24 +32,12 @@ public class MatchApi {
     public List<String> matchIdsByPuuid(String puuid, int start, int end) throws IOException {
 
         String urlStr = messageSource.getMessage("match.id.by-puuid", new Object[]{puuid, start, end}, null);
-        HttpURLConnection urlConnection = apiService.makeConnection(urlStr);
-
-        // UTF-8 인코딩 필요없음
-        List<String> matchIds;
-
-        matchIds = objectMapper.readValue(urlConnection.getInputStream(), List.class);
-
-//        log.info("matchV5Api results = {}", matchIds);
-
-        return matchIds;
+        return matchApiService.getMatchIds(urlStr);
     }
 
     public MatchDto matchByMatchId(String matchId) throws IOException{
 
         String urlStr = messageSource.getMessage("match.info.by-match-id", new Object[]{matchId}, null);
-        HttpURLConnection urlConnection = apiService.makeConnection(urlStr);
-
-        // JSON Array 매핑하는 걸로 바꿔야 함
-        return objectMapper.readValue(urlConnection.getInputStream(), MatchDto.class);
+        return matchApiService.matchByMatchId(urlStr);
     }
 }

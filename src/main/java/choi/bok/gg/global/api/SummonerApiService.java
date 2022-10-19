@@ -21,7 +21,6 @@ public class SummonerApiService implements ApiService{
 
     private final ObjectMapper objectMapper;
 
-
     public SummonerDto getSummonerDto(String urlStr) throws IOException {
         log.info("요청 url: {}", urlStr);
         HttpURLConnection urlConnection = makeConnection(urlStr);
@@ -39,9 +38,12 @@ public class SummonerApiService implements ApiService{
     }
 
     public List<SummonerTierDto> getSummonerTierDto(String urlStr) throws IOException{
+        log.info("요청 url: {}", urlStr);
         HttpURLConnection urlConnection = makeConnection(urlStr);
+        log.info("SummonerTierApi Response Code = {}", urlConnection.getResponseCode());
         List<SummonerTierDto> summonerTierDto = objectMapper.readValue(urlConnection.getInputStream(), new TypeReference<>() {});
         urlConnection.disconnect();
+        log.info("받아온 정보 = {}", summonerTierDto.get(1).toString());
         return summonerTierDto;
     }
 
