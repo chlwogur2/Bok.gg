@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 public class MatchApi {
 
-    private final String urlStr = "https://asia.api.riotgames.com/lol/match/v5/matches/";
+
     private final ObjectMapper objectMapper;
     private final ApiService apiService;
     private final MessageSource messageSource;
@@ -48,10 +48,8 @@ public class MatchApi {
 
     public MatchDto matchByMatchId(String matchId) throws IOException{
 
-        URL url = new URL(urlStr + matchId);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-        urlConnection.setRequestProperty("X-Riot-Token", RiotApiKey.KEY);
+        String urlStr = messageSource.getMessage("match.info.by-match-id", new Object[]{matchId}, null);
+        HttpURLConnection urlConnection = apiService.makeConnection(urlStr);
 
         // JSON Array 매핑하는 걸로 바꿔야 함
         return objectMapper.readValue(urlConnection.getInputStream(), MatchDto.class);
