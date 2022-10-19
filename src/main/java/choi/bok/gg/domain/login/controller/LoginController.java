@@ -27,11 +27,11 @@ public class LoginController {
     // 로그인 폼 보여주는 애
     @GetMapping("/login")
     public String loginForm(@ModelAttribute UserLoginDto userLoginDto){
-        // TODO: 2022-09-12 [view 만들어야함]
+        log.info("로그인 폼");
         return "login/loginForm";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login_proc")
     public String login(@Valid @ModelAttribute UserLoginDto userLoginDto, BindingResult bindingResult,
                         @RequestParam(defaultValue = "/") String redirectURL,
                         HttpServletRequest request){
