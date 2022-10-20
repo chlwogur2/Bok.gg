@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootTest
-class MatchApiTest {
+class MatchKrApiTest {
 
     @Autowired MatchService matchService;
     @Autowired SummonerService summonerService;

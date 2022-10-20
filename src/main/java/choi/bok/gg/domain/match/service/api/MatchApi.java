@@ -1,40 +1,15 @@
 package choi.bok.gg.domain.match.service.api;
 
-
 import choi.bok.gg.domain.match.dto.MatchDto;
-import choi.bok.gg.global.api.MatchApiService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
-
 
 import java.io.IOException;
-
 import java.util.List;
 
-@Slf4j
-@RequiredArgsConstructor
-@Component
-public class MatchApi {
+public interface MatchApi {
 
+    // 소환사의 puuid로 매치 id를 end - start + 1개 가져옴
+    List<String> matchIdsByPuuid(String puuid, int start, int end) throws IOException;
 
-    private final MatchApiService matchApiService;
-    private final MessageSource messageSource;
-
-    /**
-     * @param puuid 유저의 puuid
-     * @throws IOException
-     */
-    public List<String> matchIdsByPuuid(String puuid, int start, int end) throws IOException {
-
-        String urlStr = messageSource.getMessage("match.id.by-puuid", new Object[]{puuid, start, end}, null);
-        return matchApiService.getMatchIds(urlStr);
-    }
-
-    public MatchDto matchByMatchId(String matchId) throws IOException{
-
-        String urlStr = messageSource.getMessage("match.info.by-match-id", new Object[]{matchId}, null);
-        return matchApiService.getMatchDto(urlStr);
-    }
+    // 매치 id로 매치 정보를 가져옴
+    MatchDto matchByMatchId(String matchId) throws IOException;
 }
