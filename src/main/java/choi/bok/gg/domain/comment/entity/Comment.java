@@ -1,5 +1,6 @@
 package choi.bok.gg.domain.comment.entity;
 
+import choi.bok.gg.domain.likes.entity.Likes;
 import choi.bok.gg.domain.match.entity.Match;
 import choi.bok.gg.domain.user.entity.User;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "comment")
@@ -32,6 +34,9 @@ public class Comment {
     private Match match;
 
     private String content;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Likes> likes;
 
     // 대댓글 기능
     @ColumnDefault("0")
