@@ -1,6 +1,7 @@
 package choi.bok.gg.domain.match.entity;
 
 
+import choi.bok.gg.domain.comment.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "matches")
@@ -29,5 +31,8 @@ public class Match {
     // 이거를 기준으로 DB에서 정렬
     @Column(name = "game_time")
     private Timestamp gameTime;
+
+    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Comment> comments;
 }
 
