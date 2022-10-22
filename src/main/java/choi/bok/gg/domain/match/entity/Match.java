@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,7 +33,7 @@ public class Match {
     @Column(name = "game_time")
     private Timestamp gameTime;
 
-    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Comment> comments;
+    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
 }
 
