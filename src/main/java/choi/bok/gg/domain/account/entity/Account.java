@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Account {
 
     @Id @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "account_id")
     private Long id;
 
     @Column(nullable = false)
@@ -31,6 +31,6 @@ public class Account {
     @Column(name = "summoner_name", nullable = false)
     private String summonerName;    // 아예 회원가입할때부터 각자의 롤 아이디를 적도록 하자
 
-    @Column(name = "account_id")
+    @Column(name = "riot_id")
     private String accountId;   // 회원가입부터 Riot accountId 저장
 }
