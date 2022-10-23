@@ -1,4 +1,4 @@
-package choi.bok.gg.domain.user.entity;
+package choi.bok.gg.domain.account.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,21 +12,23 @@ import javax.persistence.*;
  */
 @Entity
 @Getter
-@Table(name = "user")
+@Table(name = "account")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Account {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
     @Column(name = "user_id")
     private Long id;
 
+    @Column(nullable = false)
     private String userLoginId;
 
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "summoner_name")
+    @Column(name = "summoner_name", nullable = false)
     private String summonerName;    // 아예 회원가입할때부터 각자의 롤 아이디를 적도록 하자
 
     @Column(name = "account_id")

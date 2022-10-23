@@ -1,7 +1,6 @@
 package choi.bok.gg.domain.comment.dto;
 
 import choi.bok.gg.domain.comment.entity.Comment;
-import choi.bok.gg.domain.user.service.UserService;
 import lombok.Builder;
 import lombok.Data;
 

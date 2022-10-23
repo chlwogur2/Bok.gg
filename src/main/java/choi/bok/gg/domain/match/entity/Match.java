@@ -23,7 +23,7 @@ import java.util.List;
 public class Match {
 
     @Column(name = "match_id")
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
     private Long id;
 
     @Column(name = "match_api_id")

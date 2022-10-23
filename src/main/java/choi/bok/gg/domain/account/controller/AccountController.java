@@ -1,10 +1,10 @@
-package choi.bok.gg.domain.user.controller;
+package choi.bok.gg.domain.account.controller;
 
 import choi.bok.gg.domain.summoner.service.SummonerService;
-import choi.bok.gg.domain.user.dto.UserLoginDto;
-import choi.bok.gg.domain.user.dto.UserLoginIdDto;
-import choi.bok.gg.domain.user.dto.UserSignUpDto;
-import choi.bok.gg.domain.user.service.UserService;
+import choi.bok.gg.domain.account.dto.AccountLoginDto;
+import choi.bok.gg.domain.account.dto.AccountLoginIdDto;
+import choi.bok.gg.domain.account.dto.AccountSignUpDto;
+import choi.bok.gg.domain.account.service.AccountService;
 import choi.bok.gg.global.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,25 +20,25 @@ import java.io.IOException;
 @Slf4j
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class UserController {
+public class AccountController {
 
-    private final UserService userService;
+    private final AccountService accountService;
     private final SummonerService summonerService;
 
     @GetMapping("/signup")
-    public String signUpPage(@ModelAttribute UserSignUpDto userSignUpDto){
+    public String signUpPage(@ModelAttribute AccountSignUpDto accountSignUpDto){
         log.info("회원가입");
         return "users/userSignUpForm";
     }
 
 
     @PostMapping("/signup")
-    public String signUp(UserLoginIdDto userLoginIdDto, @Valid @ModelAttribute UserSignUpDto userSignUpDto, BindingResult bindingResult) throws IOException {
+    public String signUp(AccountLoginIdDto accountLoginIdDto, @Valid @ModelAttribute AccountSignUpDto accountSignUpDto, BindingResult bindingResult) throws IOException {
 
-        log.info("AJAX로 넘어온거: " + userLoginIdDto.toString());
-        log.info(userService.findUserByLoginId(userLoginIdDto.getLoginId()).toString());
+        log.info("AJAX로 넘어온거: " + accountLoginIdDto.toString());
+        log.info(accountService.findUserByLoginId(accountLoginIdDto.getLoginId()).toString());
         // TODO 아이디 중복 검사 성공시, 실패시 메세지 표현
-        if (!userService.findUserByLoginId(userLoginIdDto.getLoginId()).isEmpty()) {
+        if (!accountService.findUserByLoginId(accountLoginIdDto.getLoginId()).isEmpty()) {
             bindingResult.reject("Duplicated.userLoginId");
             log.info("중복검사 실행");
             return "/users/userSignUpForm";
@@ -54,19 +54,19 @@ public class UserController {
 
 
         // 소환사이름이 없을 경우
-        if (!summonerService.isSummoner(userSignUpDto.getSummonerName())) {
+        if (!summonerService.isSummoner(accountSignUpDto.getSummonerName(), "summonerKrApi")) {
             log.info("소환사 존재 안함");
             bindingResult.reject("NoSummoner");
             return "users/userSignUpForm";
         }
 
-        userService.signUp(userSignUpDto);
+        accountService.signUp(accountSignUpDto);
         return "redirect:/";
     }
 
     @GetMapping("/mypage")
-    public String myPage(@SessionAttribute(name = SessionConst.LOGIN_SESSION) UserLoginDto userLoginDto, Model model) {
-        model.addAttribute("userLoginDto", userLoginDto);
+    public String myPage(@SessionAttribute(name = SessionConst.LOGIN_SESSION) AccountLoginDto accountLoginDto, Model model) {
+        model.addAttribute("userLoginDto", accountLoginDto);
         return "users/myPage";
     }
 }

@@ -6,9 +6,9 @@ import choi.bok.gg.domain.comment.dto.CommentWriteDto;
 import choi.bok.gg.domain.comment.entity.Comment;
 import choi.bok.gg.domain.comment.repository.CommentRepository;
 import choi.bok.gg.domain.match.repository.MatchRepository;
-import choi.bok.gg.domain.user.dto.UserLoginDto;
-import choi.bok.gg.domain.user.entity.User;
-import choi.bok.gg.domain.user.repository.UserRepository;
+import choi.bok.gg.domain.account.dto.AccountLoginDto;
+import choi.bok.gg.domain.account.entity.Account;
+import choi.bok.gg.domain.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,12 +22,12 @@ import java.util.Optional;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
     private final MatchRepository matchRepository;
 
     public void writeComment(CommentWriteDto commentWriteDto) {
         commentRepository.save(Comment.builder()
-                .user(userRepository.findUserBySummonerName(commentWriteDto.getSummonerName()).get())
+                .account(accountRepository.findUserBySummonerName(commentWriteDto.getSummonerName()).get())
                 .match(matchRepository.findMatchByMatchId(commentWriteDto.getMatchId()).get())
                 .content(commentWriteDto.getContent())
                 .depth(commentWriteDto.getDepth()).build());
@@ -41,8 +41,8 @@ public class CommentService {
         commentRepository.delete(commentRepository.findById(commentDeleteDto.getCommentId()).get());
     }
 
-    public Page<CommentPageDto> findRecentFiveComments(UserLoginDto userLoginDto){
-        Optional<User> user = userRepository.findUserByUserLoginId(userLoginDto.getUserLoginId());
+    public Page<CommentPageDto> findRecentFiveComments(AccountLoginDto accountLoginDto){
+        Optional<Account> user = accountRepository.findUserByUserLoginId(accountLoginDto.getUserLoginId());
         PageRequest pageRequest = PageRequest.of(0, 5, Sort.by(Sort.Order.desc("id")));
         return commentRepository.findCommentsPaging(user.get(), pageRequest).map(CommentPageDto::from);
     }

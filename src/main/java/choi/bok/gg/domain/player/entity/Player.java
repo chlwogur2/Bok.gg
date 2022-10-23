@@ -1,7 +1,7 @@
 package choi.bok.gg.domain.player.entity;
 
 import choi.bok.gg.domain.match.entity.Match;
-import choi.bok.gg.domain.user.entity.User;
+import choi.bok.gg.domain.account.entity.Account;
 
 import javax.persistence.*;
 
@@ -19,5 +19,5 @@ public class Player {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Account account;
 }

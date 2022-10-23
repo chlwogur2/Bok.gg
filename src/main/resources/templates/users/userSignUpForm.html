@@ -12,7 +12,7 @@
 </head>
 <body>
     <h2>회원가입</h2>
-    <form action="" th:action th:object="${userSignUpDto}" method="post">
+    <form action="" th:action th:object="${accountSignUpDto}" method="post">
         <div>
             <label for="userLoginId">로그인 ID</label>
             <input type="text" id="userLoginId" th:field="*{userLoginId}" th:errorclass="field-error">

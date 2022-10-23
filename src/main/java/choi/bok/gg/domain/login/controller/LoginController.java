@@ -1,8 +1,8 @@
 package choi.bok.gg.domain.login.controller;
 
 import choi.bok.gg.domain.login.service.LoginService;
-import choi.bok.gg.domain.user.dto.UserLoginDto;
-import choi.bok.gg.domain.user.entity.User;
+import choi.bok.gg.domain.account.dto.AccountLoginDto;
+import choi.bok.gg.domain.account.entity.Account;
 import choi.bok.gg.global.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +26,13 @@ public class LoginController {
 
     // 로그인 폼 보여주는 애
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute UserLoginDto userLoginDto){
+    public String loginForm(@ModelAttribute AccountLoginDto accountLoginDto){
         log.info("로그인 폼");
         return "login/loginForm";
     }
 
     @PostMapping("/login_proc")
-    public String login(@Valid @ModelAttribute UserLoginDto userLoginDto, BindingResult bindingResult,
+    public String login(@Valid @ModelAttribute AccountLoginDto accountLoginDto, BindingResult bindingResult,
                         @RequestParam(defaultValue = "/") String redirectURL,
                         HttpServletRequest request){
 
@@ -45,10 +45,10 @@ public class LoginController {
         }
 
         // 로그인 로직에 넣어봄
-        User loginUser = loginService.login(userLoginDto.getUserLoginId(), userLoginDto.getPassword());
+        Account loginAccount = loginService.login(accountLoginDto.getUserLoginId(), accountLoginDto.getPassword());
 
         // 로그인 실패 시, reject 전달
-        if (loginUser == null){
+        if (loginAccount == null){
             log.info("로그인 실패");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             return "login/loginForm";
@@ -56,7 +56,7 @@ public class LoginController {
 
         // 로그인 성공 처리 (없으면 새로 세션을 생성해줌)
         HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.LOGIN_SESSION, userLoginDto); // 넘어온 userLoginDto 세션에 저장
+        session.setAttribute(SessionConst.LOGIN_SESSION, accountLoginDto); // 넘어온 accountLoginDto 세션에 저장
         log.info("로그인 성공");
         return "redirect:" + redirectURL;
 

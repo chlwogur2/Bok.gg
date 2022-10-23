@@ -2,7 +2,7 @@ package choi.bok.gg.domain.comment.entity;
 
 import choi.bok.gg.domain.likes.entity.Likes;
 import choi.bok.gg.domain.match.entity.Match;
-import choi.bok.gg.domain.user.entity.User;
+import choi.bok.gg.domain.account.entity.Account;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "match_id")
