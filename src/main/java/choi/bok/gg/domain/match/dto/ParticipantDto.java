@@ -20,17 +20,18 @@ public class ParticipantDto {
     private int kda; // 얘도
     private int deathsByEnemyChamps;
     // 여기까지
+    private int deaths;
+
 
     private int champLevel;
     private int championId;
-    private int championTransform;
     private String championName;
-    private int consumablesPurchased;   // 영약 산 횟수
-    private int damageDealtToObjectives;
-    private int damageDealtToBuildings;
-    private int damageDealtToTurrets;
-    private int damageSelfMitigated;
-    private int deaths;
+//    private int consumablesPurchased;   // 영약 산 횟수
+//    private int damageDealtToObjectives;
+//    private int damageDealtToBuildings;
+//    private int damageDealtToTurrets;
+//    private int damageSelfMitigated;
+
     private int detectorWardsPlaced;
     private int doubleKills;
     private boolean eligibleForProgression;
@@ -46,26 +47,26 @@ public class ParticipantDto {
     private int item4;
     private int item5;
     private int item6;
-    private int killingSprees;
+//    private int killingSprees;
     private int kills;
-    private String lane;    // 챔피언 라인?
+//    private String lane;    // 큐 잡힐 때 라인
     private int largestKillingSpree;
-    private int longestTimeSpentLiving;
+//    private int longestTimeSpentLiving;
 
-    private int magicDamageDealt;
-    private int magicDamageDealtToChampions;
-    private int magicDamageTaken;
+//    private int magicDamageDealt;
+//    private int magicDamageDealtToChampions;
+//    private int magicDamageTaken;
 
     private int neutralMinionsKilled;
-    private int objectivesStolen;
-    private int objectivesStolenAssists;
+//    private int objectivesStolen;
+//    private int objectivesStolenAssists;
     private int participantId;
 
     private int pentaKills;
 
-    private int physicalDamageDealt;
-    private int physicalDamageDealtToChampions;
-    private int physicalDamageTaken;
+//    private int physicalDamageDealt;
+//    private int physicalDamageDealtToChampions;
+//    private int physicalDamageTaken;
 
     private int profileIcon;
 
@@ -73,33 +74,34 @@ public class ParticipantDto {
 
     private String puuid;
 
-    private int sightWardsBoughtInGame;
-    private int spell1Casts;
-    private int spell2Casts;
-    private int spell3Casts;
-    private int spell4Casts;
+    private int sightWardsBoughtInGame; // 제어 와드 산 개수
+//    private int spell1Casts;
+//    private int spell2Casts;
+//    private int spell3Casts;
+//    private int spell4Casts;
+
     private int summoner1Casts;
     private int summoner1Id;
     private int summoner2Casts;
     private int summoner2Id;
+
     private String summonerId;
     private String summonerName;
     private String teamPosition;
     private int summonerLevel;
 
-    private boolean teamEarlySurrendered;
+//    private boolean teamEarlySurrendered; // 조기항복
     private int teamId;
-
 
     private int timePlayed;
 
-    private int totalDamageDealt;
+//    private int totalDamageDealt;
     private int totalDamageDealtToChampions;
-    private int totalDamageShieldedOnTeammates;
-    private int totalDamageTaken;
+//    private int totalDamageShieldedOnTeammates;
+//    private int totalDamageTaken;
 
-    private int totalHeal;
-    private int totalHealsOnTeammates;
+//    private int totalHeal;
+//    private int totalHealsOnTeammates;
 
     private int totalMinionsKilled;
 
@@ -110,10 +112,10 @@ public class ParticipantDto {
     private int turretKills;
 
 
-    private int visionScore;
-    private int visionWardsBoughtInGame;
-    private int wardsKilled;
-    private int wardsPlaced;
+    private int visionScore;    // 시야점수
+//    private int visionWardsBoughtInGame;
+//    private int wardsKilled;
+//    private int wardsPlaced;
     private boolean win;
 
     @SuppressWarnings("unchecked")
