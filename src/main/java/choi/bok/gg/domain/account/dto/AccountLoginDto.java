@@ -23,9 +23,4 @@ public class AccountLoginDto {
 
     @NotEmpty
     private String password;
-
-    public AccountLoginDto from(Account account){
-        return new AccountLoginDto(account.getUserLoginId(), account.getSummonerName(), account.getPassword());
-    }
-
 }
