@@ -19,8 +19,16 @@ public class AccountLoginDto {
     @NotEmpty
     private String userLoginId;
 
+    @NotEmpty
     private String summonerName;
 
     @NotEmpty
     private String password;
+
+    public AccountLoginDto from(Account account) {
+        setUserLoginId(account.getUserLoginId());
+        setPassword(account.getPassword());
+        setSummonerName(account.getSummonerName());
+        return this;
+    }
 }

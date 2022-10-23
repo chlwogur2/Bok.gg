@@ -1,5 +1,6 @@
 package choi.bok.gg.global.service;
 
+import choi.bok.gg.domain.account.dto.AccountLoginDto;
 import choi.bok.gg.domain.account.entity.Account;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,10 +13,10 @@ import java.util.Collection;
 // DB 에서 넘긴 유저 정보
 public class AccountContext extends User {
 
-    private final Account account;
+    private final AccountLoginDto accountLoginDto;
 
-    public AccountContext(Account account, Collection<? extends GrantedAuthority> authorities) {
-        super(account.getUserLoginId(), account.getPassword(), authorities);
-        this.account = account;
+    public AccountContext(AccountLoginDto accountLoginDto, Collection<? extends GrantedAuthority> authorities) {
+        super(accountLoginDto.getUserLoginId(), accountLoginDto.getPassword(), authorities);
+        this.accountLoginDto = accountLoginDto;
     }
 }
