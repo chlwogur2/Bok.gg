@@ -1,4 +1,4 @@
-package choi.bok.gg.domain.match.dto;
+package choi.bok.gg.domain.match.dto.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

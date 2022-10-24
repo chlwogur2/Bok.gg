@@ -1,6 +1,6 @@
 package choi.bok.gg.global.api;
 
-import choi.bok.gg.domain.match.dto.MatchDto;
+import choi.bok.gg.domain.match.dto.api.MatchDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

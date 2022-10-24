@@ -1,6 +1,6 @@
 package choi.bok.gg.domain.match.service.api;
 
-import choi.bok.gg.domain.match.dto.MatchDto;
+import choi.bok.gg.domain.match.dto.api.MatchDto;
 
 import java.io.IOException;
 import java.util.List;

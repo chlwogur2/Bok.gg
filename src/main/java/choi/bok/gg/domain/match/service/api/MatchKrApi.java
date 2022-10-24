@@ -1,7 +1,7 @@
 package choi.bok.gg.domain.match.service.api;
 
 
-import choi.bok.gg.domain.match.dto.MatchDto;
+import choi.bok.gg.domain.match.dto.api.MatchDto;
 import choi.bok.gg.global.api.MatchApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

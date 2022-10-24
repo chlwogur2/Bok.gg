@@ -1,6 +1,6 @@
 package choi.bok.gg.domain.match.service.api;
 
-import choi.bok.gg.domain.match.dto.MatchDto;
+import choi.bok.gg.domain.match.dto.api.MatchDto;
 import choi.bok.gg.domain.match.service.MatchService;
 import choi.bok.gg.domain.summoner.service.SummonerService;
 import org.junit.jupiter.api.Test;

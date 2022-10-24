@@ -1,10 +1,8 @@
-package choi.bok.gg.domain.match.dto;
+package choi.bok.gg.domain.match.dto.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Map;
 
 @Data
 public class MatchInfoDto {
