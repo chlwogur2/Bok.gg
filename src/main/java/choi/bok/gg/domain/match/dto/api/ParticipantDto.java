@@ -118,10 +118,4 @@ public class ParticipantDto {
 //    private int wardsPlaced;
     private boolean win;
 
-    @SuppressWarnings("unchecked")
-    @JsonProperty("challenges")
-    private void unpackChallenges(Map<String, Integer> challenges){
-        this.kda = challenges.get("kda");
-        this.deathsByEnemyChamps = challenges.get("deathsByEnemyChamps");
-    }
 }
