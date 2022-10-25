@@ -9,10 +9,12 @@ import choi.bok.gg.domain.account.repository.AccountRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Transactional
+@SpringBootTest
 class CommentServiceTest {
 
     @Autowired
@@ -29,7 +31,9 @@ class CommentServiceTest {
     void writeComment() {
 
         Account account = Account.builder()
-                .summonerName("wqw").build();
+                .summonerName("wqw")
+                .password("1234")
+                .userLoginId("hello").build();
         Match match = Match.builder()
                 .matchId("wqw").build();
 
@@ -41,7 +45,7 @@ class CommentServiceTest {
 
         Assertions.assertThat(
                 commentRepository.findCommentsByAccount(
-                        accountRepository.findUserBySummonerName("wqw").get()).get(0).getContent())
+                        accountRepository.findBySummonerName("wqw").get()).get(0).getContent())
                 .isEqualTo("hello");
     }
 

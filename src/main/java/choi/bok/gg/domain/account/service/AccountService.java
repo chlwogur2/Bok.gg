@@ -34,17 +34,17 @@ public class AccountService {
     }
 
     // 로그인 ID가 DB에 존재하는지 검색
-    public Optional<Account> findUserByLoginId(String userLoginId){
-        return accountRepository.findUserByUserLoginId(userLoginId);
+    public Optional<Account> findAccountByLoginId(String userLoginId){
+        return accountRepository.findByUserLoginId(userLoginId);
     }
 
     // 로그인 ID로 소환사명 검색
     public String findSummonerName(String userLoginId){
-        return accountRepository.findUserByUserLoginId(userLoginId).get().getSummonerName();
+        return accountRepository.findByUserLoginId(userLoginId).get().getSummonerName();
     }
 
     // 로그인 ID로 account accountID 검색
     public String findAccountId(String userLoginId) {
-        return accountRepository.findUserByUserLoginId(userLoginId).get().getAccountId();
+        return accountRepository.findByUserLoginId(userLoginId).get().getAccountId();
     }
 }

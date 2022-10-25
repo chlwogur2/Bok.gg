@@ -19,7 +19,7 @@ public class LoginService {
 
     public Account login(String userLoginId, String password){
         // 일단은 입력으로 들어온 UserLoginId 로 유저를 찾아봄
-        Optional<Account> findUser = accountRepository.findUserByUserLoginId(userLoginId);
+        Optional<Account> findUser = accountRepository.findByUserLoginId(userLoginId);
 
         if (findUser.isPresent()){
             log.info("로그인 시도하는 소환사: {}", findUser.get().getSummonerName());

@@ -19,7 +19,7 @@ class AccountRepositoryTest {
     AccountRepository accountRepository;
 
     @Test
-    void findUserByUserLoginId() {
+    void findByUserLoginId() {
 
         String userLoginId = "hello";
         Account account = Account.builder()
@@ -28,14 +28,14 @@ class AccountRepositoryTest {
 
         accountRepository.save(account);
 
-        Account findAccount = accountRepository.findUserByUserLoginId(userLoginId).get();
+        Account findAccount = accountRepository.findByUserLoginId(userLoginId).get();
 
         assertThat(findAccount).isEqualTo(account);
         assertThat(findAccount.getUserLoginId()).isEqualTo("hello");
     }
 
     @Test
-    void findUserBySummonerId(){
+    void findBySummonerId(){
         String korean = URLEncoder.encode("곱창", StandardCharsets.UTF_8);
 
         Account accountKorean = Account.builder()
@@ -48,8 +48,8 @@ class AccountRepositoryTest {
         accountRepository.save(accountKorean);
         accountRepository.save(accountAmerican);
 
-        Account findKorean = accountRepository.findUserBySummonerName(korean).get();
-        Account findAmerican = accountRepository.findUserBySummonerName("qwer").get();
+        Account findKorean = accountRepository.findBySummonerName(korean).get();
+        Account findAmerican = accountRepository.findBySummonerName("qwer").get();
 
         assertThat(findAmerican).isEqualTo(accountAmerican);
         assertThat(findKorean).isEqualTo(accountKorean);

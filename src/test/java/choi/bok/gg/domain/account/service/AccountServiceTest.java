@@ -27,7 +27,7 @@ class AccountServiceTest {
 
     @Test
     @DisplayName("유저 로그인 ID로 유저 조회 성공")
-    void findUserByLoginId() {
+    void findByLoginId() {
 
         Optional<Account> user = Optional.of(Account.builder()
                 .userLoginId("hello")
@@ -38,9 +38,9 @@ class AccountServiceTest {
         String userLoginId = "hello";
 
         Mockito.doReturn(user).when(accountRepository)
-                .findUserByUserLoginId(userLoginId);
+                .findByUserLoginId(userLoginId);
 
-        assertThat(accountService.findUserByLoginId("hello").get()).isEqualTo(user.get());
+        assertThat(accountService.findAccountByLoginId("hello").get()).isEqualTo(user.get());
     }
 
     @Test

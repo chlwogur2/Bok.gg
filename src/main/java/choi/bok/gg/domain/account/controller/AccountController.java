@@ -36,9 +36,8 @@ public class AccountController {
     public String signUp(AccountLoginIdDto accountLoginIdDto, @Valid @ModelAttribute AccountSignUpDto accountSignUpDto, BindingResult bindingResult) throws IOException {
 
         log.info("AJAX로 넘어온거: " + accountLoginIdDto.toString());
-        log.info(accountService.findUserByLoginId(accountLoginIdDto.getLoginId()).toString());
         // TODO 아이디 중복 검사 성공시, 실패시 메세지 표현
-        if (!accountService.findUserByLoginId(accountLoginIdDto.getLoginId()).isEmpty()) {
+        if (!accountService.findAccountByLoginId(accountLoginIdDto.getLoginId()).isEmpty()) {
             bindingResult.reject("Duplicated.userLoginId");
             log.info("중복검사 실행");
             return "/users/userSignUpForm";
