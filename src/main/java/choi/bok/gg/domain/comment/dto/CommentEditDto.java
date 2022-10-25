@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class CommentEditDto {
-
+    private Long commentId;
+    private String content;
 }
