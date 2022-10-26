@@ -105,3 +105,20 @@
 툴: `AQUERY TOOL`
 
 ![](ERD.png)
+
+<br>
+<br>
+
+### 클래스 다이어그램
+***
+[Account Class Diagram](https://cloud.smartdraw.com/share.aspx/?pubDocShare=D350DA9831D942F54E58151E89FFB784E8C)
+<div id="D350DA9831D942F54E58151E89FFB784E8C_24008"><div id="D350DA9831D942F54E58151E89FFB784E8C_24008_robot"><a href="https://cloud.smartdraw.com/share.aspx/?pubDocShare=D350DA9831D942F54E58151E89FFB784E8C" target="_blank"><img src="https://cloud.smartdraw.com/cloudstorage/D350DA9831D942F54E58151E89FFB784E8C/preview2.png"></a></div></div><script src="https://cloud.smartdraw.com/plugins/html/js/sdjswidget_html.js" type="text/javascript"></script><script type="text/javascript">SDJS_Widget("D350DA9831D942F54E58151E89FFB784E8C",24008,1,"");</script><br/>
+
+[Comment Class Diagram](https://cloud.smartdraw.com/share.aspx/?pubDocShare=84D0EB1DFEDBCAB1392A6F609C99A245524)
+<div id="84D0EB1DFEDBCAB1392A6F609C99A245524_20111"><div id="84D0EB1DFEDBCAB1392A6F609C99A245524_20111_robot"><a href="https://cloud.smartdraw.com/share.aspx/?pubDocShare=84D0EB1DFEDBCAB1392A6F609C99A245524" target="_blank"><img src="https://cloud.smartdraw.com/cloudstorage/84D0EB1DFEDBCAB1392A6F609C99A245524/preview2.png"></a></div></div><script src="https://cloud.smartdraw.com/plugins/html/js/sdjswidget_html.js" type="text/javascript"></script><script type="text/javascript">SDJS_Widget("84D0EB1DFEDBCAB1392A6F609C99A245524",20111,1,"");</script><br/>
+
+[Summoner Class Diagram](https://cloud.smartdraw.com/share.aspx/?pubDocShare=B5A7DDE3DF53051FABE0166286BA57C5CD4)
+<div id="B5A7DDE3DF53051FABE0166286BA57C5CD4_82412"><div id="B5A7DDE3DF53051FABE0166286BA57C5CD4_82412_robot"><a href="https://cloud.smartdraw.com/share.aspx/?pubDocShare=B5A7DDE3DF53051FABE0166286BA57C5CD4" target="_blank"><img src="https://cloud.smartdraw.com/cloudstorage/B5A7DDE3DF53051FABE0166286BA57C5CD4/preview2.png"></a></div></div><script src="https://cloud.smartdraw.com/plugins/html/js/sdjswidget_html.js" type="text/javascript"></script><script type="text/javascript">SDJS_Widget("B5A7DDE3DF53051FABE0166286BA57C5CD4",82412,1,"");</script><br/>
+
+[Match Class Diagram](https://cloud.smartdraw.com/share.aspx/?pubDocShare=1291C916EF6AE823775474BA3112C983BE2)
+<div id="1291C916EF6AE823775474BA3112C983BE2_2917"><div id="1291C916EF6AE823775474BA3112C983BE2_2917_robot"><a href="https://cloud.smartdraw.com/share.aspx/?pubDocShare=1291C916EF6AE823775474BA3112C983BE2" target="_blank"><img src="https://cloud.smartdraw.com/cloudstorage/1291C916EF6AE823775474BA3112C983BE2/preview2.png"></a></div></div><script src="https://cloud.smartdraw.com/plugins/html/js/sdjswidget_html.js" type="text/javascript"></script><script type="text/javascript">SDJS_Widget("1291C916EF6AE823775474BA3112C983BE2",2917,1,"");</script><br/>
