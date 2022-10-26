@@ -85,6 +85,13 @@
 | ---- | ------ | ---- | --------- | ------ | ------- |
 |      |        |      |           |        |         |
 
+**Match**
+`@RequestMapping("/match)`
+
+| Name     | Method | Path      | Attribute | Status       | Comment |
+|----------|-------|-----------| --------- |--------------|------|
+| 매치 상세 정보 | `GET` | `/detail` |           | `Developing` |      |
+
 
 
 <br>
@@ -97,4 +104,4 @@
 
 툴: `AQUERY TOOL`
 
-![image-20221019202946655](./ERD.png)
+![](ERD.png)
