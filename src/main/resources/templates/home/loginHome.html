@@ -44,9 +44,17 @@
         <tr>
             <th></th>
         </tr>
-        <tr th:each="result : ${matchesResults}">
-            <td th:text="|승리|" th:if="${result == true}"></td>
-            <td th:text="|패배|" th:if="${result == false}"></td>
+        <tr th:each="result : ${matchResults}">
+            <div>
+                <td th:text="|승리|" th:if="${result.isWin() == true}"></td>
+                <td th:text="|패배|" th:if="${result.isWin() == false}"></td>
+                <td th:text="${result.getChampionName()}"></td>
+                <td th:text="${result.getGameEndDateTime()}"></td>
+                <td th:text="| K/D/A= ${result.getKill()}/|"></td>
+                <td th:text="|${result.getDeath()}/|"></td>
+                <td th:text="|${result.getAssist()}|"></td>
+                <td><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId})}'|"></button></td>
+            </div>
             <h2>구분선</h2>
 <!--            <td th:text="${match.getMatchMetadataDto()}"></td>-->
         </tr>
