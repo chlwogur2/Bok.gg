@@ -32,6 +32,13 @@
             <input type="password" id="re_password">
         </div>
         <div>
+            <div>소환사 계정 서버</div>
+            <div th:each="lo : ${riotLocale}">
+                <input type="radio" th:field="*{locale}" th:value="${lo.name()}">
+                <label th:for="${#ids.prev('locale')}" th:text="${lo.where}"></label>
+            </div>
+        </div>
+        <div>
             <label for="summonerName">소환사 이름</label>
             <input type="text" id="summonerName" th:field="*{summonerName}" th:errorclass="field-error">
             <span>띄어쓰기까지 입력해 주세요.</span>

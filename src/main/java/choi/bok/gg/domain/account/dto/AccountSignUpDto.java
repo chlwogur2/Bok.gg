@@ -1,6 +1,7 @@
 package choi.bok.gg.domain.account.dto;
 
 import choi.bok.gg.domain.account.entity.Account;
+import choi.bok.gg.global.api.RiotLocale;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -27,11 +28,6 @@ public class AccountSignUpDto {
     @NotEmpty
     private String summonerName;
 
-    public Account toEntity(AccountSignUpDto accountSignUpDto) {
-        return Account.builder()
-                .userLoginId(accountSignUpDto.getUserLoginId())
-                .password(accountSignUpDto.getPassword())
-                .summonerName(accountSignUpDto.getSummonerName())
-                .build();
-    }
+    @NotNull
+    private RiotLocale locale;
 }

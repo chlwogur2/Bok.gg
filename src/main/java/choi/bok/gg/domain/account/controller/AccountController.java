@@ -6,6 +6,7 @@ import choi.bok.gg.domain.account.dto.AccountLoginIdDto;
 import choi.bok.gg.domain.account.dto.AccountSignUpDto;
 import choi.bok.gg.domain.account.service.AccountService;
 import choi.bok.gg.global.annotation.AuthUser;
+import choi.bok.gg.global.api.RiotLocale;
 import choi.bok.gg.global.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -27,7 +29,10 @@ public class AccountController {
     private final SummonerService summonerService;
 
     @GetMapping("/signup")
-    public String signUpPage(@ModelAttribute AccountSignUpDto accountSignUpDto){
+    public String signUpPage(@ModelAttribute AccountSignUpDto accountSignUpDto, Model model){
+
+        RiotLocale[] values = RiotLocale.values();
+        model.addAttribute("riotLocale", values);
         log.info("회원가입");
         return "users/userSignUpForm";
     }
@@ -51,9 +56,9 @@ public class AccountController {
         if (bindingResult.hasErrors()) {
             return "users/userSignUpForm";
         }
-
+        log.info("요청 Locale= {}", "summoner" +accountSignUpDto.getLocale() + "Api");
         // 소환사이름이 없을 경우
-        if (!summonerService.isSummoner(accountSignUpDto.getSummonerName(), "summonerKrApi")) {
+        if (!summonerService.isSummoner(accountSignUpDto.getSummonerName(), "summoner" +accountSignUpDto.getLocale() + "Api")) {
             log.info("소환사 존재 안함");
             bindingResult.reject("NoSummoner");
             return "users/userSignUpForm";

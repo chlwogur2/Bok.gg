@@ -14,14 +14,14 @@ import java.util.List;
 
 // 이거 빼면 objectMapper 가 지금 빈으로 등록되어 있어서 NPE 뜸
 @SpringBootTest
-class SummonerKrApiTest {
+class SummonerKRApiTest {
 
     @Autowired
     MessageSource messageSource;
     @Autowired
     SummonerApiService summonerApiService;
     @Autowired
-    SummonerKrApi summonerKrApi = new SummonerKrApi(summonerApiService, messageSource);
+    SummonerKRApi summonerKrApi = new SummonerKRApi(summonerApiService, messageSource);
 
     @Test
     void summonerV4DtoDySummonerName() throws IOException {

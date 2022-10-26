@@ -5,6 +5,7 @@ import choi.bok.gg.domain.summoner.dto.SummonerTierDto;
 import choi.bok.gg.global.api.SummonerApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,8 @@ import java.util.Locale;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class SummonerNaApi implements SummonerApi{
+@Qualifier("SummonerNAApi")
+public class SummonerNAApi implements SummonerApi{
 
     private final SummonerApiService summonerApiService;
     private final MessageSource messageSource;
