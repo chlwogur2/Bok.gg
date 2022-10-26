@@ -5,6 +5,7 @@ import choi.bok.gg.domain.account.dto.AccountLoginDto;
 import choi.bok.gg.domain.account.dto.AccountLoginIdDto;
 import choi.bok.gg.domain.account.dto.AccountSignUpDto;
 import choi.bok.gg.domain.account.service.AccountService;
+import choi.bok.gg.global.annotation.AuthUser;
 import choi.bok.gg.global.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class AccountController {
 
         log.info("AJAX로 넘어온거: " + accountLoginIdDto.toString());
         // TODO 아이디 중복 검사 성공시, 실패시 메세지 표현
-        if (!accountService.findAccountByLoginId(accountLoginIdDto.getLoginId()).isEmpty()) {
+        if (accountService.findAccountByLoginId(accountLoginIdDto.getLoginId()).isPresent()) {
             bindingResult.reject("Duplicated.userLoginId");
             log.info("중복검사 실행");
             return "/users/userSignUpForm";
@@ -51,7 +52,6 @@ public class AccountController {
             return "users/userSignUpForm";
         }
 
-
         // 소환사이름이 없을 경우
         if (!summonerService.isSummoner(accountSignUpDto.getSummonerName(), "summonerKrApi")) {
             log.info("소환사 존재 안함");
@@ -64,7 +64,7 @@ public class AccountController {
     }
 
     @GetMapping("/mypage")
-    public String myPage(@SessionAttribute(name = SessionConst.LOGIN_SESSION) AccountLoginDto accountLoginDto, Model model) {
+    public String myPage(@AuthUser AccountLoginDto accountLoginDto, Model model) {
         model.addAttribute("userLoginDto", accountLoginDto);
         return "users/myPage";
     }
