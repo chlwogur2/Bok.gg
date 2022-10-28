@@ -6,7 +6,7 @@ import choi.bok.gg.domain.match.dto.api.MatchDto;
 import choi.bok.gg.domain.match.dto.api.ParticipantDto;
 import choi.bok.gg.domain.match.entity.Match;
 import choi.bok.gg.domain.match.repository.MatchRepository;
-import choi.bok.gg.domain.match.service.api.MatchKrApi;
+import choi.bok.gg.domain.match.service.api.MatchApi;
 import choi.bok.gg.global.exception.NoMatchResultsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,17 +21,17 @@ import java.util.TimeZone;
 @Service
 @RequiredArgsConstructor
 public class MatchService {
-    private final MatchKrApi matchKrApi;
+    private final MatchApi matchApi;
     private final MatchRepository matchRepository;
 
     // Match ID 여러 개 가져오는 용도
     public List<String> getMatchIdsByPuuid(String puuid) throws IOException {
-        return matchKrApi.matchIdsByPuuid(puuid, 0, 5);
+        return matchApi.matchIdsByPuuid(puuid, 0, 5);
     }
 
     // Match ID 하나 당 Match 정보 보여줌
     public MatchDto getMatchByMatchId(String matchId) throws IOException {
-        return matchKrApi.matchByMatchId(matchId);
+        return matchApi.matchByMatchId(matchId);
     }
 
     // 유저가 댓글을 달은 매치만 저장

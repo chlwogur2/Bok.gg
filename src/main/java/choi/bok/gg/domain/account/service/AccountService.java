@@ -1,6 +1,6 @@
 package choi.bok.gg.domain.account.service;
 
-import choi.bok.gg.domain.summoner.service.api.SummonerKrApi;
+import choi.bok.gg.domain.summoner.service.api.SummonerApi;
 import choi.bok.gg.domain.account.dto.AccountSignUpDto;
 import choi.bok.gg.domain.account.entity.Account;
 import choi.bok.gg.domain.account.repository.AccountRepository;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    private final SummonerKrApi summonerKrApi;
+    private final SummonerApi summonerApi;
     private final PasswordEncoder passwordEncoder;
     /**
      * 회원가입 메소드
@@ -27,7 +27,8 @@ public class AccountService {
                 .userLoginId(accountSignUpDto.getUserLoginId())
                 .password(passwordEncoder.encode(accountSignUpDto.getPassword()))
                 .summonerName(accountSignUpDto.getSummonerName())  // 소환사 이름은 평문으로 저장
-                .accountId(summonerKrApi.summonerDtoBySummonerName(accountSignUpDto.getSummonerName()).getAccountId())
+                .accountId(summonerApi.summonerDtoBySummonerName(accountSignUpDto.getSummonerName()).getAccountId())
+                .locale(accountSignUpDto.getLocale())
                 .build());
 
         return accountSignUpDto;
