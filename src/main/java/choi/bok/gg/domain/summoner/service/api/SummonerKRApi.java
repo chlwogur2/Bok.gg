@@ -3,15 +3,13 @@ package choi.bok.gg.domain.summoner.service.api;
 import choi.bok.gg.domain.summoner.dto.SummonerDto;
 import choi.bok.gg.domain.summoner.dto.SummonerTierDto;
 import choi.bok.gg.global.api.SummonerApiService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -19,7 +17,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class SummonerKrApi implements SummonerApi {
+@Primary
+public class SummonerKRApi implements SummonerApi {
 
     private final SummonerApiService summonerApiService;
     private final MessageSource messageSource;
