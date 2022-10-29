@@ -16,7 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/bootstrap/css/styles.css" rel="stylesheet" />
+    <link href="/bootstrap/new-age-gh-pages/css/styles.css" rel="stylesheet" />
+    <link href="/bootstrap/niceadmin/css/style.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
@@ -40,23 +41,19 @@
             </div>
         </div>
     </nav>
-    <table>
-        <tr>
-            <th></th>
-        </tr>
-        <tr th:each="result : ${matchResults}">
-            <div>
-                <td th:text="|승리|" th:if="${result.isWin() == true}"></td>
-                <td th:text="|패배|" th:if="${result.isWin() == false}"></td>
-                <td th:text="${result.getChampionName()}"></td>
-                <td th:text="${result.getGameEndDateTime()}"></td>
-                <td th:text="| K/D/A= ${result.getKill()}/|"></td>
-                <td th:text="|${result.getDeath()}/|"></td>
-                <td th:text="|${result.getAssist()}|"></td>
-                <td><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId})}'|"></button></td>
-            </div>
+    <table class="table">
+        <tr th:each="result : ${matchResults}"
+            th:classappend="${result.isWin() ? 'table-primary' : 'table-danger'}"
+        >
+            <td th:text="|승리|" th:if="${result.isWin() == true}"></td>
+            <td th:text="|패배|" th:if="${result.isWin() == false}"></td>
+            <td th:text="${result.getChampionName()}"></td>
+            <td th:text="${result.getGameEndDateTime()}"></td>
+            <td th:text="| K/D/A= ${result.getKill()}/|"></td>
+            <td th:text="|${result.getDeath()}/|"></td>
+            <td th:text="|${result.getAssist()}|"></td>
+            <td><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId})}'|"></button></td>
             <h2>구분선</h2>
-<!--            <td th:text="${match.getMatchMetadataDto()}"></td>-->
         </tr>
     </table>
 
