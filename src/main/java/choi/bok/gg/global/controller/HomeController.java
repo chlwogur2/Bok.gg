@@ -35,7 +35,7 @@ public class HomeController {
 
         // 세션의 회원 데이터에서 userLoginId -> 소환사 이름
         String accountId = accountService.findAccountId(accountLoginDto.getUserLoginId());
-        List<String> matchIds = matchService.getMatchIdsByPuuid(summonerService.getPuuidByAccountId(accountId, "summonerKrApi"));
+        List<String> matchIds = matchService.getMatchIdsByPuuid(summonerService.getPuuidByAccountId(accountId, "summonerKRApi"));
 
         // 승패 결과
         //TODO: Service와 Controller 사이에서 실행되는 로직들을 제공하는 FACADE 객체를 만들어보자
