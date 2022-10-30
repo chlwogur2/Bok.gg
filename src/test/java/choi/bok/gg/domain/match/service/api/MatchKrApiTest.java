@@ -31,7 +31,7 @@ class MatchKrApiTest {
     void matchByMatchId() throws IOException{
         String puuid = summonerService.getPuuidBySummonerName("재 렉", "summonerKrApi");
         List<String> matchIds = matchService.getMatchIdsByPuuid(puuid);
-        MatchDto result = matchService.getMatchByMatchId(matchIds.get(0));
+        MatchDto result = matchService.getMatchDtoByMatchId(matchIds.get(0));
         System.out.println(result);
     }
 }

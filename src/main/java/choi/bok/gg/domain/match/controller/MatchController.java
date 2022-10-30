@@ -21,7 +21,7 @@ public class MatchController {
     public String matchDetail(@PathVariable String matchId) throws IOException {
 
         //TODO Service <-> Controller 사이에서 로직을 처리하는 별도의 클래스를 만들어야겠다.
-        MatchDto matchDto = matchService.getMatchByMatchId(matchId);
+        MatchDto matchDto = matchService.getMatchDtoByMatchId(matchId);
 
         return "match/matchDetail";
     }

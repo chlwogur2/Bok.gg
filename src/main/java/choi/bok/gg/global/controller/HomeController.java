@@ -41,7 +41,7 @@ public class HomeController {
         //TODO: Service와 Controller 사이에서 실행되는 로직들을 제공하는 FACADE 객체를 만들어보자
         List<MatchResultDto> matchResults = new ArrayList<>();
         for (String ids : matchIds){
-            MatchDto matchDto = matchService.getMatchByMatchId(ids);
+            MatchDto matchDto = matchService.getMatchDtoByMatchId(ids);
             MatchResultDto matchResultDto = matchService.getMatchResult(accountLoginDto, matchDto);
             matchResults.add(matchResultDto);
 //            if (matchService.isWin(accountLoginDto,matchDto)) matchResults.add(true);
