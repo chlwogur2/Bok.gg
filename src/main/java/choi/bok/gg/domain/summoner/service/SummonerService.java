@@ -2,8 +2,6 @@ package choi.bok.gg.domain.summoner.service;
 
 import choi.bok.gg.domain.summoner.dto.TierRank;
 import choi.bok.gg.domain.summoner.service.api.SummonerApi;
-import choi.bok.gg.domain.summoner.service.api.SummonerKrApi;
-import choi.bok.gg.global.api.ApiService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +13,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class SummonerService {
-
 
     private final Map<String, SummonerApi> apiMap;
 
