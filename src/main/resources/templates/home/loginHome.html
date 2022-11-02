@@ -44,18 +44,34 @@
     <table class="table">
         <tr th:each="result : ${matchResults}"
             th:classappend="${result.isWin() ? 'table-primary' : 'table-danger'}"
+            th:id="|${result.getMatchId()}|"
         >
             <td th:text="|승리|" th:if="${result.isWin() == true}"></td>
             <td th:text="|패배|" th:if="${result.isWin() == false}"></td>
             <td th:text="${result.getChampionName()}"></td>
             <td th:text="${result.getGameEndDateTime()}"></td>
-            <td th:text="| K/D/A= ${result.getKill()}/|"></td>
-            <td th:text="|${result.getDeath()}/|"></td>
-            <td th:text="|${result.getAssist()}|"></td>
-            <td><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId})}'|"></button></td>
+            <td th:text="| K/D/A= ${result.getKill()}/${result.getDeath()}/${result.getAssist()}|"></td>
+            <td><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId()})}'|"></button></td>
+            <td><button th:text="|댓글|"
+                        th:matchId="${result.getMatchId()}"
+                        th:onclick="commentList(this.getAttribute('matchId'))"></button></td>
             <h2>구분선</h2>
         </tr>
     </table>
-
 </body>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script th:inline="javascript">
+
+    function commentList(a) {
+        console.log("hello");
+        console.log(a);
+        $.ajax({
+            url: '/comments',
+            type: 'POST',
+            data: a,
+            dataType: "text"
+        })
+        console.log("bye");
+    }
+</script>
 </html>
