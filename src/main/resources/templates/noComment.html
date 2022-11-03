@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/bootstrap/niceadmin/css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+    <div th:id="${matchId}">
+        <ul>
+            <li th:text="${noComment}"></li>
+            <li>어떻게 표시되는지</li>
+            <li>궁금</li>
+        </ul>
+    </div>
+</body>
+</html>
