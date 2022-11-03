@@ -19,59 +19,207 @@
     <link href="/bootstrap/new-age-gh-pages/css/styles.css" rel="stylesheet" />
     <link href="/bootstrap/niceadmin/css/style.css" rel="stylesheet" />
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-        <div class="container px-5">
-            <a class="navbar-brand fw-bold" href="#page-top">Bok.gg</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="bi-list"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="#features" th:text="|${accountLoginDto.getUserLoginId()}님, 안녕하세요|">할로</a></li>
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="#download" th:onclick="|location.href='@{/users/mypage}'|">My Page</a></li>
-                </ul>
-                <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
-                                <span class="d-flex align-items-center">
-                                    <i class="bi-chat-text-fill me-2"></i>
-                                    <span class="small">Send Feedback</span>
-                                </span>
-                </button>
+<body class="pt-5">
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">Bok.gg</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">4</span>
+                    </a><!-- End Notification Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            You have 4 new notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4>Lorem Ipsum</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>30 min. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>Atque rerum nesciunt</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>1 hr. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div>
+                                <h4>Sit rerum fuga</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>2 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <div>
+                                <h4>Dicta reprehenderit</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>4 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all notifications</a>
+                        </li>
+
+                    </ul><!-- End Notification Dropdown Items -->
+
+                </li><!-- End Notification Nav -->
+
+                <span class="d-none d-md-block ps-2" th:onclick="|location.href='@{/users/mypage}'|">My Page</span>
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+<!--                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">-->
+                        <span class="d-none d-md-block dropdown-toggle ps-2" th:text="|${accountLoginDto.getUserLoginId()}님, 안녕하세요|">K. Anderson</span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kevin Anderson</h6>
+                            <span>Web Designer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+    </header>
+    <div class="card pt-5" style="margin-top: auto">
+        <div class="card-body" th:each="result : ${matchResults}" th:classappend="${result.isWin() ? 'alert alert-primary border-primary alert-dismissible fade show' : 'alert alert-danger border-danger alert-dismissible fade show'}">
+            <div
+                 style="display: flex;"
+                 class="pt-4"
+            >
+                <div th:text="|승리|" th:if="${result.isWin() == true}"></div>
+                <div th:text="|패배|" th:if="${result.isWin() == false}"></div>
+                <div th:text="${result.getChampionName()}"></div>
+                <div th:text="${result.getGameEndDateTime()}"></div>
+                <div th:text="| K/D/A= ${result.getKill()}/${result.getDeath()}/${result.getAssist()}|"></div>
+                <div><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId()})}'|"></button></div>
+                <div><button th:text="|댓글|"
+                             th:matchId="${result.getMatchId()}"
+                             th:onclick="commentList(this.getAttribute('matchId'))"></button></div>
             </div>
+            <div th:id="|${result.getMatchId()}|" style="display: none"></div>
         </div>
-    </nav>
-    <table class="table">
-        <tr th:each="result : ${matchResults}"
-            th:classappend="${result.isWin() ? 'table-primary' : 'table-danger'}"
-            th:id="|${result.getMatchId()}|"
-        >
-            <td th:text="|승리|" th:if="${result.isWin() == true}"></td>
-            <td th:text="|패배|" th:if="${result.isWin() == false}"></td>
-            <td th:text="${result.getChampionName()}"></td>
-            <td th:text="${result.getGameEndDateTime()}"></td>
-            <td th:text="| K/D/A= ${result.getKill()}/${result.getDeath()}/${result.getAssist()}|"></td>
-            <td><button th:text="|상세 보기|" th:onclick="|location.href='@{/match/{param}(param=${result.getMatchId()})}'|"></button></td>
-            <td><button th:text="|댓글|"
-                        th:matchId="${result.getMatchId()}"
-                        th:onclick="commentList(this.getAttribute('matchId'))"></button></td>
-            <h2>구분선</h2>
-        </tr>
-    </table>
+    </div>
+
 </body>
 <script src="../node_modules/jquery/dist/jquery.js"></script>
 <script th:inline="javascript">
 
-    function commentList(a) {
-        console.log("hello");
-        console.log(a);
+    function commentList(matchId) {
         $.ajax({
             url: '/comments',
             type: 'POST',
-            data: a,
-            dataType: "text"
+            data: matchId,
+            dataType: "text",
+            success: function (comment) {
+                console.log("comment= " + comment);
+                console.log(comment)
+                $('#' + matchId).replaceWith(comment);
+            }
         })
-        console.log("bye");
+            .done(function (comment){
+                console.log("done function= " + comment);
+            });
     }
 </script>
 </html>
