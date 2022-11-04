@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/bootstrap/niceadmin/css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+    <div th:id="${matchId}">
+        <ul>
+            <li th:id="|noComment|" th:text="${noComment}"></li>
+<!--첫 댓글 작성하는 input이므로, 매치 또한 DB에 저장해야함-->
+            <li><input type="text" id="comment"></li><button type="submit"
+                                                             th:matchId="${matchId}"
+                                                             th:onclick="writeComment(this.getAttribute('matchId'))"></button>
+        </ul>
+    </div>
+</body>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+
+<script th:inline="javascript">
+
+
+    function writeComment(matchId) {
+
+        let comment = $('#comment').val();
+
+        // 작성한 사람은 현재 로그인하고 있는 사람의 DTO에서 가져오도록 하자
+        let commentDto = JSON.stringify({
+            matchId: matchId,
+            content: comment
+        });
+
+        $.ajax({
+            url: '/comments/first',
+            type: 'POST',
+            contentType: 'application/json',    // json 전송 시에는 필요
+            data: commentDto,
+            dataType: "text",
+            success: function (comment) {
+                $('#noComment').replaceWith(comment);
+            }
+        })
+            .done(function (comment){
+                console.log("done function= " + comment);
+            });
+    }
+</script>
+</html>
