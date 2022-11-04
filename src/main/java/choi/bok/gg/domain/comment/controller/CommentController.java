@@ -25,7 +25,7 @@ public class CommentController {
     private final CommentService commentService;
     private final MatchService matchService;
 
-    // AJAX 에서 요청 URL을 /comments/matchId로 보내고, 데이터를 matchId로
+    // AJAX 에서 요청 URL을 /comments로 보내고, 데이터를 matchId로
     @PostMapping
     public String commentsList(Model model, @RequestBody String matchId)  {
         String id = matchId.substring(0, matchId.length() - 1);
@@ -33,8 +33,10 @@ public class CommentController {
         try {
             // matchId 맨 뒤에 등호가 포함돼서 나오는 현상때문에 substring 으로 문자열 자름
             Page<CommentPageDto> comments = commentService.getMatchComments(id);
+            log.info("예외 발생 안함");
             model.addAttribute("comments", comments);
-            return "home/loginHome :: #commentList";
+            model.addAttribute("matchId", id);
+            return "comment/commentList";
 
         } catch (NoMatchFoundException e) {
             log.info("예외 발생");
@@ -56,13 +58,12 @@ public class CommentController {
 
         // 매치 저장
         matchService.saveMatch((String) commentDto.get("matchId"));
-        model.addAttribute("comments", commentService.getMatchComments(c.getMatchId()));
-
-
 
         // 댓글 저장
         commentService.writeComment(c);
 
+        model.addAttribute("comments", commentService.getMatchComments(c.getMatchId()));
+        model.addAttribute("matchId",  commentDto.get("matchId"));
         return "comment/commentList";
     }
 

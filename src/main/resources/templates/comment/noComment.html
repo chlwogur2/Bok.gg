@@ -41,11 +41,12 @@
             data: commentDto,
             dataType: "text",
             success: function (comment) {
-                $('#noComment').replaceWith(comment);
+                console.log("noComment success function= " + comment)
+                $('#' + matchId).replaceWith(comment);
             }
         })
             .done(function (comment){
-                console.log("done function= " + comment);
+                console.log("noComment done function= " + comment);
             });
     }
 </script>
