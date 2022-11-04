@@ -45,10 +45,13 @@ public class MatchService {
     // 유저가 댓글을 달은 매치만 저장
     public void saveMatch(MatchDto matchDto) {
         String matchId = matchDto.getMatchMetadataDto().getMatchId();
-        Timestamp matchTime = new Timestamp(matchDto.getMatchInfo().getGameEndTimestamp());
         matchRepository.save(Match.builder()
-                .matchId(matchId)
-                .gameTime(matchTime).build());
+                .matchId(matchId).build());
+    }
+
+    public void saveMatch(String matchId) {
+        matchRepository.save(Match.builder()
+                .matchId(matchId).build());
     }
 
     // 현재 로그인 세션의 플레이어가 매치를 이겼는지 졌는지
