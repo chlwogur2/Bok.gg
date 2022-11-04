@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +28,24 @@ public class Match {
     @Id @GeneratedValue
     private Long id;
 
+    @NotNull
     @Column(name = "match_api_id")
     private String matchId;
 
-    // 이거를 기준으로 DB에서 정렬
-    @Column(name = "game_time")
-    private Timestamp gameTime;
-
-    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "match", cascade = CascadeType.REMOVE)    
     private List<Comment> comments = new ArrayList<>();
+    
+    // 만약 0이 되면, DB에서 매치 엔티티 삭제
+    @ColumnDefault("0")
+    @Column(name = "match_comment_count")
+    private int commentCount;
+
+    public void increaseCommentCount() {
+        this.commentCount++;
+    }
+
+    public void decreaseCommentCount() {
+        this.commentCount--;
+    }
 }
 
