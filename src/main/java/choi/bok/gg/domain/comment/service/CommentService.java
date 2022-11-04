@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -30,13 +31,15 @@ public class CommentService {
     private final MatchRepository matchRepository;
 
 
-
+    @Transactional
     public void writeComment(@NotNull CommentWriteDto commentWriteDto) {
+        Match match = matchRepository.findMatchByMatchId(commentWriteDto.getMatchId()).get();
         commentRepository.save(Comment.builder()
                 .account(accountRepository.findBySummonerName(commentWriteDto.getSummonerName()).get())
-                .match(matchRepository.findMatchByMatchId(commentWriteDto.getMatchId()).get())
+                .match(match)
                 .content(commentWriteDto.getContent())
                 .depth(commentWriteDto.getDepth()).build());
+        match.increaseCommentCount();
     }
 
     public void editComment(@NotNull CommentEditDto commentEditDto) {
@@ -44,7 +47,11 @@ public class CommentService {
     }
 
     public void deleteComment(@NotNull CommentDeleteDto commentDeleteDto) {
+        Match match = matchRepository.findMatchByMatchId(commentDeleteDto.getMatchId()).get();
         commentRepository.delete(commentRepository.findById(commentDeleteDto.getCommentId()).get());
+        match.decreaseCommentCount();
+        // 댓글 삭제 시, 매치에 남은 댓글 수가 0이면 매치를 DB에서 삭제
+        if (match.getCommentCount() == 0) matchRepository.delete(match);
     }
 
     // 최근 유저가 작성한 Comment 5개 가져오기
