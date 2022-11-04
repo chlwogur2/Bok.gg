@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
-    @Query("select m from Match m order by m.gameTime desc")
+    @Query("select m from Match m")
     Page<Match> findMatchPage(Pageable pageable);
 
     Optional<Match> findMatchByMatchId(String MatchId);
