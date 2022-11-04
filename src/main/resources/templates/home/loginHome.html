@@ -212,8 +212,6 @@
             data: matchId,
             dataType: "text",
             success: function (comment) {
-                console.log("comment= " + comment);
-                console.log(comment)
                 $('#' + matchId).replaceWith(comment);
             }
         })
