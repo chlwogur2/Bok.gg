@@ -13,6 +13,7 @@ import choi.bok.gg.domain.account.dto.AccountLoginDto;
 import choi.bok.gg.domain.account.entity.Account;
 import choi.bok.gg.domain.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +25,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CommentService {
 
     private final CommentRepository commentRepository;
@@ -50,6 +52,9 @@ public class CommentService {
         Match match = matchRepository.findMatchByMatchId(commentDeleteDto.getMatchId()).get();
         commentRepository.delete(commentRepository.findById(commentDeleteDto.getCommentId()).get());
         match.decreaseCommentCount();
+
+        log.info("남은 댓글 수= {}", match.getCommentCount());
+
         // 댓글 삭제 시, 매치에 남은 댓글 수가 0이면 매치를 DB에서 삭제
         if (match.getCommentCount() == 0) matchRepository.delete(match);
     }
