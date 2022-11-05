@@ -8,8 +8,40 @@
 </head>
 <body>
     <div th:id="${matchId}" th:each="comment : ${comments}">
-        <span th:text="${comment.getSummoner()}"></span>
-        <span th:text="${comment.getContent()}"></span>
+        <span th:class="${comment.getCommentId()}" th:text="${comment.getSummoner()}"></span>
+        <span th:class="${comment.getCommentId()}" th:text="${comment.getContent()}"></span>
+        <button th:class="${comment.getCommentId()}"
+                th:text="|삭제|"
+                th:commentId="${comment.getCommentId()}"
+                th:matchId="${matchId}"
+                th:onclick="deleteComment(this.getAttribute('commentId'))"></button>
     </div>
 </body>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script th:inline="javascript">
+
+    let matchId = [[${matchId}]];
+
+    function deleteComment(commentId){
+
+        console.log("matchId= ", matchId);
+
+        let deleteCommentDto = JSON.stringify({
+            matchId: matchId,
+            commentId: commentId
+        })
+
+        console.log("deleteCommentDto= ", deleteCommentDto);
+
+        $.ajax({
+            url: '/comments',
+            contentType: 'application/json',    // json 전송 시에는 필요
+            type: 'DELETE',
+            data: deleteCommentDto
+        })
+            .done(function (){
+                $('.' + commentId).remove();
+            })
+    }
+</script>
 </html>
