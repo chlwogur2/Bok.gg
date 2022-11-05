@@ -8,11 +8,12 @@ import lombok.Data;
 @Builder
 public class CommentPageDto {
 
-
+    private Long commentId;
     private String summoner;
     private String content;
     public static CommentPageDto from(Comment comment) {
         return CommentPageDto.builder()
+                .commentId(comment.getId())
                 .content(comment.getContent())
                 .summoner(comment.getAccount().getSummonerName())
                 .build();
