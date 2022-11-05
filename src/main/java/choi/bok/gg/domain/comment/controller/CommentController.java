@@ -1,6 +1,7 @@
 package choi.bok.gg.domain.comment.controller;
 
 import choi.bok.gg.domain.account.dto.AccountLoginDto;
+import choi.bok.gg.domain.comment.dto.CommentDeleteDto;
 import choi.bok.gg.domain.comment.dto.CommentPageDto;
 import choi.bok.gg.domain.comment.dto.CommentWriteDto;
 import choi.bok.gg.domain.comment.service.CommentService;
@@ -64,6 +65,17 @@ public class CommentController {
 
         model.addAttribute("comments", commentService.getMatchComments(c.getMatchId()));
         model.addAttribute("matchId",  commentDto.get("matchId"));
+        return "comment/commentList";
+    }
+
+    @DeleteMapping
+    public String deleteComment(@RequestBody Map<String, Object> commentDeleteDto) {
+        log.info("deleteComment 실행");
+        CommentDeleteDto c = CommentDeleteDto.builder()
+                .commentId(Long.valueOf((String) commentDeleteDto.get("commentId")))
+                .matchId((String) commentDeleteDto.get("matchId")).build();
+
+        commentService.deleteComment(c);
         return "comment/commentList";
     }
 
