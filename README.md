@@ -114,7 +114,6 @@
 
 **Account Class Diagram**
 ![](diagram/Account Class Diagram.png)
-
 <br><br>
 **Comment Class Diagram**
 ![](diagram/Comment Class Diagram.png)
