@@ -113,13 +113,13 @@
 ***
 
 **Account Class Diagram**
-![](diagram/Account Class Diagram.png)
+![](diagram/AccountClassDiagram.png)
 <br><br>
 **Comment Class Diagram**
-![](diagram/Comment Class Diagram.png)
+![](diagram/CommentClassDiagram.png)
 <br><br>
 **Match Class Diagram**
-![](diagram/Match Class Diagram.png)
+![](diagram/MatchClassDiagram.png)
 <br><br>
 **Summoner Class Diagram**
-![](diagram/Summoner Class Diagram.png)
+![](diagram/SummonerClassDiagram.png)
