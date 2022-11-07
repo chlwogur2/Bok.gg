@@ -1,53 +1,78 @@
 package choi.bok.gg.domain.account.service;
 
+import choi.bok.gg.domain.account.dto.AccountSignUpDto;
 import choi.bok.gg.domain.account.entity.Account;
 import choi.bok.gg.domain.account.repository.AccountRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@Transactional
 class AccountServiceTest {
 
-    @InjectMocks
+    @InjectMocks  // Mock 객체를 주입받는 객체
     private AccountService accountService;
 
-    @Mock
+    @Mock  // 실제가 아닌 Mock
     private AccountRepository accountRepository;
 
+    Optional<Account> user = Optional.of(Account.builder()
+            .accountId("ac")
+            .userLoginId("hello")
+            .summonerName("재 렉").build());
+
+
     @Test
-    @DisplayName("유저 로그인 ID로 유저 조회 성공")
+    @DisplayName("유저 로그인 ID로 유저 조회")
     void findByLoginId() {
-
-        Optional<Account> user = Optional.of(Account.builder()
-                .userLoginId("hello")
-                .summonerName("olleh").build());
-
-        accountRepository.save(user.get());
+        //given
+        when(accountRepository.findByUserLoginId(any())).thenReturn(user);
 
         String userLoginId = "hello";
 
-        Mockito.doReturn(user).when(accountRepository)
-                .findByUserLoginId(userLoginId);
+        //when
+        Optional<Account> account = accountService.findAccountByLoginId(userLoginId);
 
-        assertThat(accountService.findAccountByLoginId("hello").get()).isEqualTo(user.get());
+        //then
+        assertThat(account).isEqualTo(user);
     }
 
     @Test
+    @DisplayName("유저 로그인 ID로 소환사 이름 조회")
     void findSummonerName() {
+        //given
+        when(accountRepository.findByUserLoginId("hello")).thenReturn(user);
+
+        String userLoginId = "hello";
+
+        //when
+        String name = accountService.findSummonerNameByLoginId(userLoginId);
+
+        //then
+        assertThat(user.get().getSummonerName()).isEqualTo(name);
     }
 
     @Test
+    @DisplayName("유저 로그인 ID로 accountId 조회")
     void findAccountId() {
+        //given
+        when(accountRepository.findByUserLoginId("hello")).thenReturn(user);
+        String userLoginId = "hello";
+
+        //when
+        String accountId = accountService.findAccountIdByLoginId(userLoginId);
+
+        //then
+        assertThat(user.get().getAccountId()).isEqualTo(accountId);
     }
 }

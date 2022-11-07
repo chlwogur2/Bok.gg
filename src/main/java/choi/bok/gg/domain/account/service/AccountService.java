@@ -40,12 +40,12 @@ public class AccountService {
     }
 
     // 로그인 ID로 소환사명 검색
-    public String findSummonerName(String userLoginId){
+    public String findSummonerNameByLoginId(String userLoginId){
         return accountRepository.findByUserLoginId(userLoginId).get().getSummonerName();
     }
 
     // 로그인 ID로 account accountID 검색
-    public String findAccountId(String userLoginId) {
+    public String findAccountIdByLoginId(String userLoginId) {
         return accountRepository.findByUserLoginId(userLoginId).get().getAccountId();
     }
 }
