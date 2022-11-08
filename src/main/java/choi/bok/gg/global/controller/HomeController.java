@@ -34,12 +34,13 @@ public class HomeController {
         }
 
         // 세션의 회원 데이터에서 userLoginId -> 소환사 이름
-        String accountId = accountService.findAccountId(accountLoginDto.getUserLoginId());
+        String accountId = accountService.findAccountIdByLoginId(accountLoginDto.getUserLoginId());
         List<String> matchIds = matchService.getMatchIdsByPuuid(summonerService.getPuuidByAccountId(accountId, "summonerKRApi"));
 
         // 승패 결과
         //TODO: Service와 Controller 사이에서 실행되는 로직들을 제공하는 FACADE 객체를 만들어보자
         List<MatchResultDto> matchResults = new ArrayList<>();
+
         for (String ids : matchIds){
             MatchDto matchDto = matchService.getMatchDtoByMatchId(ids);
             MatchResultDto matchResultDto = matchService.getMatchResult(accountLoginDto, matchDto);
