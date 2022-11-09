@@ -17,7 +17,7 @@ configurations {
 repositories {
 	mavenCentral()
 }
-// todo: npm 빌드 설정 추가
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,9 +28,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.3'
     implementation 'org.jetbrains:annotations:20.1.0'
+	// WebClient 사용하기 위해서
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
-
-    compileOnly 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
