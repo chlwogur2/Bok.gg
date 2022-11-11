@@ -1,10 +1,13 @@
 package choi.bok.gg.global.controller;
 
+import choi.bok.gg.domain.account.service.AccountService;
+import choi.bok.gg.domain.match.service.MatchService;
+import choi.bok.gg.domain.summoner.service.SummonerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -12,7 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@WebMvcTest({HomeController.class})
 @AutoConfigureMockMvc // MockMvc 타입 빈 등록
 class HomeControllerTest {
 
@@ -22,8 +25,12 @@ class HomeControllerTest {
     @Autowired
     WebTestClient webTestClient;
 
-    @Autowired
-    TestRestTemplate testRestTemplate;
+    @MockBean
+    AccountService accountService;
+    @MockBean
+    SummonerService summonerService;
+    @MockBean
+    MatchService matchService;
 
     @Test
     void homePageMockMvc() throws Exception {
@@ -42,9 +49,12 @@ class HomeControllerTest {
                 .expectBody().consumeWith(System.out::println);
     }
 
-    @Test
-    void homePageTestRestTemplate() {
-        String result = testRestTemplate.getForObject("/", String.class);
-        System.out.println("result= " + result);
-    }
+//    @Autowired
+//    TestRestTemplate testRestTemplate;
+//
+//    @Test
+//    void homePageTestRestTemplate() {
+//        String result = testRestTemplate.getForObject("/", String.class);
+//        System.out.println("result= " + result);
+//    }
 }
