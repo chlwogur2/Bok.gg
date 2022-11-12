@@ -1,60 +1,50 @@
 package choi.bok.gg.global.controller;
 
 import choi.bok.gg.domain.account.service.AccountService;
+import choi.bok.gg.domain.match.dto.api.MatchDto;
 import choi.bok.gg.domain.match.service.MatchService;
 import choi.bok.gg.domain.summoner.service.SummonerService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StopWatch;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebMvcTest({HomeController.class})
-@AutoConfigureMockMvc // MockMvc 타입 빈 등록
+@SpringBootTest
 class HomeControllerTest {
-
     @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    WebTestClient webTestClient;
-
-    @MockBean
-    AccountService accountService;
-    @MockBean
-    SummonerService summonerService;
-    @MockBean
     MatchService matchService;
 
-    @Test
-    void homePageMockMvc() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("text/html;charset=UTF-8"))
-                .andExpect(view().name("home/home"))
-                .andDo(print());
+    @Autowired
+    SummonerService summonerService;
+
+    @Autowired
+    AccountService accountService;
+
+    StopWatch stopWatch;
+    String accountId;
+    List<String> matchIds = new ArrayList<>();
+
+    @BeforeEach
+    void setUp() throws IOException {
+        stopWatch = new StopWatch("API Loading time");
+        accountId = accountService.findAccountIdByLoginId("qwer");
+        matchIds.addAll(matchService.getMatchIdsByPuuid(summonerService.getPuuidByAccountId(accountId, "summonerKRApi")));
+        stopWatch.start("동기 방식");
     }
 
     @Test
-    void homePageWebTestClient() {
-        webTestClient.get().uri("/").exchange()
-                .expectStatus().isOk()
-                .expectHeader().valueEquals("Content-type", "text/html;charset=UTF-8")
-                .expectBody().consumeWith(System.out::println);
+    void 동기방식() throws IOException {
+        for (String ids : matchIds){
+            MatchDto matchDto = matchService.getMatchDtoByMatchId(ids);
+        }
+        stopWatch.stop();
+        System.out.println("걸린 시간: " + stopWatch.getTotalTimeMillis());
+        System.out.println(stopWatch.prettyPrint());
     }
 
-//    @Autowired
-//    TestRestTemplate testRestTemplate;
-//
-//    @Test
-//    void homePageTestRestTemplate() {
-//        String result = testRestTemplate.getForObject("/", String.class);
-//        System.out.println("result= " + result);
-//    }
 }
