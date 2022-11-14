@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="/bootstrap/niceadmin/css/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +26,9 @@
 
     function deleteComment(commentId){
 
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+
         console.log("matchId= ", matchId);
 
         let deleteCommentDto = JSON.stringify({
@@ -37,6 +42,9 @@
             url: '/comments',
             contentType: 'application/json',    // json 전송 시에는 필요
             type: 'DELETE',
+            beforeSend: function (xhr){
+                xhr.setRequestHeader(header, token);
+            },
             data: deleteCommentDto
         })
             .done(function (){

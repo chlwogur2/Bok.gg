@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Bok.gg</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -206,11 +208,18 @@
 <script th:inline="javascript">
 
     function commentList(matchId) {
+
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+
         $.ajax({
             url: '/comments',
             type: 'POST',
             data: matchId,
             dataType: "text",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader(header, token);
+            },
             success: function (comment) {
                 $('#' + matchId).replaceWith(comment);
             }
