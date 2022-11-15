@@ -1,21 +1,19 @@
 package choi.bok.gg.domain.account.service;
 
-import choi.bok.gg.domain.account.dto.AccountSignUpDto;
 import choi.bok.gg.domain.account.entity.Account;
 import choi.bok.gg.domain.account.repository.AccountRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {
@@ -75,4 +73,12 @@ class AccountServiceTest {
         //then
         assertThat(user.get().getAccountId()).isEqualTo(accountId);
     }
+
+    @Test
+    @DisplayName("유저 로그인 ID로 유저 조회 실패")
+    void failFindSummonerName() {
+        String name = "없는 이름";
+        assertThat(accountService.findAccountByLoginId(name)).isEmpty();
+    }
+
 }
