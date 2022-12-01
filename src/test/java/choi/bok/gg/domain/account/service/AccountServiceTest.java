@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
@@ -42,6 +43,7 @@ class AccountServiceTest {
         Optional<Account> account = accountService.findAccountByLoginId(userLoginId);
 
         //then
+        then(accountRepository).should().findByUserLoginId(any());
         assertThat(account).isEqualTo(user);
     }
 
@@ -57,6 +59,7 @@ class AccountServiceTest {
         String name = accountService.findSummonerNameByLoginId(userLoginId);
 
         //then
+        then(accountRepository).should().findByUserLoginId(userLoginId);
         assertThat(user.get().getSummonerName()).isEqualTo(name);
     }
 
@@ -71,6 +74,7 @@ class AccountServiceTest {
         String accountId = accountService.findAccountIdByLoginId(userLoginId);
 
         //then
+        then(accountRepository).should().findByUserLoginId("hello");
         assertThat(user.get().getAccountId()).isEqualTo(accountId);
     }
 
