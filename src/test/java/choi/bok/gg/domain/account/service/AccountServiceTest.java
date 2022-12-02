@@ -5,6 +5,7 @@ import choi.bok.gg.domain.account.repository.AccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -41,9 +42,11 @@ class AccountServiceTest {
 
         //when
         Optional<Account> account = accountService.findAccountByLoginId(userLoginId);
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
 
         //then
-        then(accountRepository).should().findByUserLoginId(any());
+        then(accountRepository).should().findByUserLoginId(captor.capture());
+        assertThat("hello").isEqualTo(captor.getValue());
         assertThat(account).isEqualTo(user);
     }
 
